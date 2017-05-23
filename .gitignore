@@ -1,0 +1,7 @@
+/platforms
+/plugins
+/www/bower_components
+/www/node_modules
+/www/styles/.sass-cache
+/www/styles/*.css
+/www.DS_Store

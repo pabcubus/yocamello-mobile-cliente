@@ -1,0 +1,18 @@
+<div class="home">
+	<div layout="column">
+		<div flex id="main-map">
+
+		</div>
+		<div flex="nogrow" layout="column" class="control-panel">
+			<md-input-container>
+				<label>Servicio</label>
+				<md-select ng-model="hc.currentServicio">
+					<md-option ng-repeat="serv in hc.servicios" ng-value="serv.id">
+						{{serv.nombre}}
+					</md-option>
+				</md-select>
+			</md-input-container>
+			<md-button class="md-raised md-warn">Solicitar</md-button>
+		</div>
+	</div>
+</div>
