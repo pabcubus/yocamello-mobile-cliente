@@ -11,6 +11,7 @@
 				'angular-aria',
 				'angular-messages',
 				'angular-material',
+				'jkAngularRatingStars',
 
 				// Services
 				'../services/GoogleMapsService',
@@ -38,6 +39,7 @@
 				angularAria,
 				angularMessages,
 				angularMaterial,
+				jkAngularRatingStars,
 
 				// Services
 				GoogleMapsService,
@@ -54,7 +56,7 @@
 				//runConfig,
 				routesConfig
 			) {
-				ng.module('yocamello', ['ngMaterial', 'ui.router', 'angular-md5', 'ngLodash'])
+				ng.module('yocamello', ['ngMaterial', 'ui.router', 'angular-md5', 'ngLodash', 'jkAngularRatingStars'])
 					// Services
 					.service(GoogleMapsService.registeredName, GoogleMapsService)
 

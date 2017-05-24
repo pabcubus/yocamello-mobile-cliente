@@ -3,9 +3,9 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$scope', 'GoogleMapsService'];
+			var ngDependencies = ['$scope', '$mdDialog', 'GoogleMapsService'];
 
-			var HomeController = function($scope, GoogleMapsService){
+			var HomeController = function($scope, $mdDialog, GoogleMapsService){
 				var vm					= this;
 
 				vm.map = {};
@@ -25,8 +25,21 @@
 					}
 				];
 
+				vm.showPrerenderedDialog = showPrerenderedDialog;
+
 				function init(){
 					vm.map = GoogleMapsService.createMap('main-map', true);
+				}
+
+				function showPrerenderedDialog(ev) {
+					$mdDialog.show(
+						{
+							contentElement: '#myDialog',
+							parent: angular.element(document.body),
+							targetEvent: ev,
+							clickOutsideToClose: true
+						}
+					);
 				}
 
 				$scope.$on('$viewContentLoaded', function(){

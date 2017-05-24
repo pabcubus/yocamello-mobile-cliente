@@ -14,7 +14,8 @@
 			'angular-animate':			'bower_components/angular-animate/angular-animate.min',
 			'angular-aria':				'bower_components/angular-aria/angular-aria.min',
 			'angular-messages':			'bower_components/angular-messages/angular-messages.min',
-			'angular-material':			'bower_components/angular-material/angular-material.min'
+			'angular-material':			'bower_components/angular-material/angular-material.min',
+			'jkAngularRatingStars':		'bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min'
 		},
 
 		shim: {
@@ -28,7 +29,8 @@
 			'angular-animate':			{ exports: 'angular-animate', deps: ['angular'] },
 			'angular-aria':				{ exports: 'angular-aria', deps: ['angular'] },
 			'angular-messages':			{ exports: 'angular-messages', deps: ['angular'] },
-			'angular-material':			{ exports: 'angular-material', deps: ['angular'] }
+			'angular-material':			{ exports: 'angular-material', deps: ['angular'] },
+			'jkAngularRatingStars':		{ exports: 'jkAngularRatingStars', deps: ['angular'] }
 		},
 
 		waitSeconds: 15,

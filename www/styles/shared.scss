@@ -6,6 +6,21 @@
 	}
 }
 
+.md-dialog-wrapper{
+	visibility: hidden;
+}
+
+.md-dialog-container{
+	text-align: center;
+
+	.md-dialog-title{
+		margin: 0;
+	}
+	.md-dialog-stars{
+		padding: 0 20%;
+	}
+}
+
 input{
 	&.yc-input{
 		border: 1px solid #ccc;
