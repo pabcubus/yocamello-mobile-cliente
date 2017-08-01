@@ -1,9 +1,8 @@
 <md-toolbar class="md-warn">
 	<div class="md-toolbar-tools">
-		<md-button class="md-icon-button" aria-label="Settings">
+		<md-button ng-click="ac.toggleUserNav()" class="md-icon-button" aria-label="Settings">
 			<md-icon
-				class="material-icons"
-				ng-click="ac.toggleUserNav()">
+				class="material-icons">
 				menu
 			</md-icon>
 		</md-button>
@@ -15,12 +14,21 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="user-nav">
 
 	<md-content layout-padding>
-		<md-button ng-click="ac.toggleUserNav()" class="md-warn">
-			X
-		</md-button>
-		<md-button ng-click="ac.logout()" class="md-warn">
-			Logout
-		</md-button>
+		<div layout="row">
+			<div flex="80">
+				<md-button ng-click="ac.logout()" class="md-warn">
+					Logout
+				</md-button>
+			</div>
+			<div flex layout-align="end start">
+				<md-button ng-click="ac.toggleUserNav()" class="md-fab md-mini md-warn">
+					<md-icon
+						class="material-icons">
+						clear
+					</md-icon>
+				</md-button>
+			</div>
+		</div>
 	</md-content>
 
 </md-sidenav>
