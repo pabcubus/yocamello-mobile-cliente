@@ -8,24 +8,25 @@
 			var GoogleMapsService = function(lodash) {
 				var vm = this;
 
-				vm.createMap = createMap;
-				vm.setSite = setSite;
-				vm.setFault = setFault;
-				vm.centerMap = centerMap;
 				vm.markerType = {
 					site: {
-						url: 'images/map-marker.png',
-						size: new google.maps.Size(39, 39),
+						url: 'images/gps_me.png',
+						size: new google.maps.Size(35, 35),
 						origin: new google.maps.Point(0, 0),
-						anchor: new google.maps.Point(17, 32)
+						anchor: new google.maps.Point(35, 35)
 					},
-					site_bad: {
-						url: 'images/map-marker-red.png',
-						size: new google.maps.Size(39, 39),
+					worker: {
+						url: 'images/gps_worker.png',
+						size: new google.maps.Size(35, 35),
 						origin: new google.maps.Point(0, 0),
-						anchor: new google.maps.Point(17, 32)
+						anchor: new google.maps.Point(35, 35)
 					}
 				};
+
+				vm.createMap = createMap;
+				vm.setSite = setSite;
+				vm.setWorker = setWorker;
+				vm.centerMap = centerMap;
 
 				function createMap(divId, disableDefaultUI, zoom) {
 					var component	= document.getElementById(divId);
@@ -57,7 +58,7 @@
 								lng: lng
 							},
 							map: map,
-							icon: vm.markerType.site,
+							icon: 'images/gps_me.png',
 							animation: google.maps.Animation.DROP,
 							type: 'site',
 							id: markerId ? markerId : null
@@ -77,7 +78,7 @@
 					}
 				}
 
-				function setFault(map, lat, lng, string, markerId) {
+				function setWorker(map, lat, lng, string, markerId) {
 					if (map && lat && lng) {
 						var marker = new google.maps.Marker({
 							position: {
@@ -85,9 +86,9 @@
 								lng: lng
 							},
 							map: map,
-							icon: vm.markerType.site_bad,
+							icon: 'images/gps_worker.png',
 							animation: google.maps.Animation.DROP,
-							type: 'fault',
+							type: 'site',
 							id: markerId ? markerId : null
 						});
 

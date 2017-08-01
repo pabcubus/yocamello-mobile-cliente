@@ -6,22 +6,16 @@ define([], function() {
 			$stateProvider
 				.state('login', {
 					url: '/login',
-					templateUrl: 'screens/login/html/login.html'
+					templateUrl: 'screens/login/html/login.html',
+					controller: 'LoginController',
+					controllerAs: 'lc'
 				})
 				.state('home', {
 					url: '/home',
 					templateUrl: 'screens/home/html/home.html',
 					controller: 'HomeController',
 					controllerAs: 'hc'
-				})
-				/*
-				.state('overview', {
-					url: '/overview',
-					templateUrl: 'screens/overview/html/overview.html',
-					controller: 'OverviewController',
-					controllerAs: 'oc'
-				})*/
-				;
+				});
 		}
 		config.$inject = ['$urlRouterProvider', '$stateProvider', '$compileProvider'];
 

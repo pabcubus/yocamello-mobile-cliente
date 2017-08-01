@@ -1,10 +1,10 @@
 {
-  "name": "www",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "author": "",
-  "license": "ISC",
+	"name": "www",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"author": "",
+	"license": "ISC",
 	"scripts": {
 		"prepare-win": "npm install -g bower grunt",
 		"prepare-mac": "sudo npm install -g bower grunt",

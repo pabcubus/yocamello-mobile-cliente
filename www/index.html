@@ -7,8 +7,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="icon" type="image/png" href="images/favicon.png">
-
 	<link href="libs/material-design-icons/material-icons.css" rel="stylesheet">
 
 	<link rel="stylesheet" href="bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min.css">
@@ -21,9 +19,10 @@
 
 <body
 	ng-controller="AppController as ac"
+	layout="column"
 	ng-cloak>
 
-	<div ng-include="'app_frame.html'"></div>
+	<div flex layout="column" ng-include="'app_frame.html'"></div>
 
 	<script type="text/javascript" data-main="main" src="bower_components/requirejs/require.js"></script>
 </body>

@@ -13,8 +13,8 @@
 				</jk-rating-stars>
 				<h3 class="md-dialog-title">Jorge Perez</h3>
 				<div layout="row">
-					<md-button flex class="md-raised md-warn">Aceptar</md-button>
-					<md-button flex class="md-raised md-warn">Cancelar</md-button>
+					<md-button flex class="md-raised md-warn" ng-click="wc.acceptWorker()">Aceptar</md-button>
+					<md-button flex class="md-raised md-warn" ng-click="wc.cancelWorker($event)">Cancelar</md-button>
 				</div>
 			</div>
 		</md-dialog-content>

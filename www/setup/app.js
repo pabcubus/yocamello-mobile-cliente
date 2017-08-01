@@ -14,19 +14,22 @@
 				'jkAngularRatingStars',
 
 				// Services
-				'../services/GoogleMapsService',
+				'services/GoogleMapsService',
+				'services/SessionService',
 
 				// Controllers
-				'../AppController',
-				'../screens/home/js/HomeController',
+				'AppController',
+				'screens/home/js/HomeController',
+				'screens/login/js/LoginController',
 
 				// Controllers for modules
+				'modules/popups/worker/js/WorkerController',
 
 				// Directives
 
 				// ConfigServices
-				//'../setup/runConfig',
-				'../setup/routesConfig'
+				//'setup/runConfig',
+				'setup/routesConfig'
 			],
 			function(
 				ng,
@@ -43,12 +46,15 @@
 
 				// Services
 				GoogleMapsService,
+				SessionService,
 
 				// Controllers
 				AppController,
 				HomeController,
+				LoginController,
 
 				// Controllers for modules
+				WorkerController,
 
 				// Directives
 
@@ -59,12 +65,15 @@
 				ng.module('yocamello', ['ngMaterial', 'ui.router', 'angular-md5', 'ngLodash', 'jkAngularRatingStars'])
 					// Services
 					.service(GoogleMapsService.registeredName, GoogleMapsService)
+					.service(SessionService.registeredName, SessionService)
 
 					// Controllers
 					.controller(AppController.registeredName, AppController)
 					.controller(HomeController.registeredName, HomeController)
+					.controller(LoginController.registeredName, LoginController)
 
 					// Controllers for modules
+					.controller(WorkerController.registeredName, WorkerController)
 
 					// Directives
 
