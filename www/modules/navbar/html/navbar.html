@@ -15,17 +15,25 @@
 
 	<md-content layout-padding>
 		<div layout="row">
-			<div flex="80">
-				<md-button ng-click="ac.logout()" class="md-warn">
-					Logout
-				</md-button>
-			</div>
-			<div flex layout-align="end start">
-				<md-button ng-click="ac.toggleUserNav()" class="md-fab md-mini md-warn">
+			<div flex layout="column">
+				<h2 class="md-subhead">Menu</h2>
+				<md-button layout="row" class="md-raised md-warn">
 					<md-icon
+						flex="10"
 						class="material-icons">
-						clear
+						account_circle
 					</md-icon>
+					<label flex>Mi Perfil</label>
+					<div flex="10"></div>
+				</md-button>
+				<md-button layout="row" ng-click="ac.logout()" class="md-raised md-warn">
+					<md-icon
+						flex="10"
+						class="material-icons">
+						arrow_back
+					</md-icon>
+					<label flex>Salir</label>
+					<div flex="10"></div>
 				</md-button>
 			</div>
 		</div>
