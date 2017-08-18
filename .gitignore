@@ -5,5 +5,6 @@
 /www/node_modules
 /www/styles/.sass-cache
 /www/styles/*.css
+/.gradle
 .DS_Store
 package-lock.json
