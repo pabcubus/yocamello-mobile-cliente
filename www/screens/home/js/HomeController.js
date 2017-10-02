@@ -3,11 +3,20 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$scope', '$mdDialog', 'GoogleMapsService'];
+			var ngDependencies = ['$scope', '$mdDialog', 'GoogleMapsService', 'MenuService'];
 
-			var HomeController = function($scope, $mdDialog, GoogleMapsService) {
+			var HomeController = function($scope, $mdDialog, GoogleMapsService, MenuService) {
 				var vm = this;
 
+				vm.menuOptions = MenuService.getMenuOptions();
+
+				vm.openMenu = openMenu;
+
+				function openMenu($mdMenu, ev) {
+					$mdMenu.open(ev);
+				};
+
+				/*
 				vm.map = {};
 				vm.mapMarkers = [];
 				vm.currentServicio = 1;
@@ -50,6 +59,7 @@
 				$scope.$on('$viewContentLoaded', function() {
 					init();
 				});
+				*/
 			};
 
 			HomeController.$inject = ngDependencies;

@@ -16,6 +16,7 @@
 				// Services
 				'services/GoogleMapsService',
 				'services/SessionService',
+				'services/MenuService',
 
 				// Controllers
 				'AppController',
@@ -47,6 +48,7 @@
 				// Services
 				GoogleMapsService,
 				SessionService,
+				MenuService,
 
 				// Controllers
 				AppController,
@@ -66,6 +68,7 @@
 					// Services
 					.service(GoogleMapsService.registeredName, GoogleMapsService)
 					.service(SessionService.registeredName, SessionService)
+					.service(MenuService.registeredName, MenuService)
 
 					// Controllers
 					.controller(AppController.registeredName, AppController)

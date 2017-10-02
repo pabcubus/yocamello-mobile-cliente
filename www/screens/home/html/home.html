@@ -1,18 +1,28 @@
 <div flex layout="column" class="home">
-	<div flex layout="column">
-		<div flex id="main-map">
+	<div flex layout="column" class="home-links">
+		<h3 class="home-title">
+			Que necesitas hoy?
+		</h3>
+		<md-menu
+			class="home-link"
+			ng-repeat="menu in hc.menuOptions">
+			<a
+				class="home-link-btn"
+				ng-click="hc.openMenu($mdMenu, $event)"
+				style="background-image: url(images/menu/{{menu.menuIcon}});">
+				{{menu.text}}
 
-		</div>
-		<div flex="nogrow" layout="column" class="control-panel">
-			<md-input-container>
-				<label>Servicio</label>
-				<md-select ng-model="hc.currentServicio">
-					<md-option ng-repeat="serv in hc.servicios" ng-value="serv.id">
-						{{serv.nombre}}
-					</md-option>
-				</md-select>
-			</md-input-container>
-			<md-button ng-click="hc.showPrerenderedDialog($event)" class="md-raised md-warn">Solicitar</md-button>
-		</div>
+				<p>
+					{{menu.description}}
+				</p>
+			</a>
+			<md-menu-content width="4">
+				<md-menu-item ng-repeat="subitem in menu.submenu">
+					<md-button>
+						{{subitem.text}}
+					</md-button>
+				</md-menu-item>
+			</md-menu-content>
+		</md-menu>
 	</div>
 </div>

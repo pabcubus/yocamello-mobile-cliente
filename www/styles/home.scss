@@ -1,5 +1,37 @@
-.home{
-	.control-panel{
-		padding: 10px;
+.home {
+	padding: 10px;
+
+	.home-links {
+
+		.home-title{
+			text-align: center;
+		}
+
+		.home-link {
+			margin-top: 5px;
+
+			.home-link-btn {
+				width: 100%;
+				box-sizing: border-box;
+				text-align: left;
+				display: block;
+				background-color: #ccc;
+				border-radius: 10px;
+				color: #fff;
+				font-size: 18px;
+				padding: 20px 10px;
+
+				background-blend-mode: soft-light;
+				background-position: center right;
+				background-size: auto 100%;
+				background-repeat: no-repeat;
+
+				p {
+					font-size: 12px;
+					margin: 0;
+					text-align: left;
+				}
+			}
+		}
 	}
 }

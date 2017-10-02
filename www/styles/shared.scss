@@ -1,10 +1,11 @@
-/*.uiview {
-	height: 100vh;
+@font-face {
+    font-family: Montserrat;
+    src: url(Montserrat-Regular.ttf);
+}
 
-	& > div > div {
-		height: 100vh;
-	}
-}*/
+* {
+	font-family: Montserrat;
+}
 
 .md-dialog-wrapper{
 	visibility: hidden;
