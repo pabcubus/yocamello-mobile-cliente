@@ -3,8 +3,8 @@ define([], function () {
 
 	return {
 		bindings: {
-			name: '=',
-			stars: '='
+			name: '<',
+			stars: '<'
 		},
 		controller: 'WorkerController',
 		controllerAs: 'wc',

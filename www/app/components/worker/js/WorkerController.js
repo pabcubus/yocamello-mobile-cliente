@@ -3,25 +3,23 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$scope','$mdDialog'];
+			var ngDependencies = ['$scope', '$mdDialog', 'lodash'];
 
-			var WorkerController = function($scope, $mdDialog) {
+			var WorkerController = function($scope, $mdDialog, lodash) {
 				var vm			= this;
 
 				vm.title		= 'Trabajador Asignado';
-				vm.worker		= {};
+				vm.worker		= {
+					name: vm.name,
+					stars: vm.stars
+				}
 
-				$scope.$watchGroup(
-					['name','stars'],
-					function(newValue, oldValue) {
-						if (newValue !== oldValue) {
-							vm.worker		= {
-								name: vm.name,
-								stars: vm.stars
-							}
-						}
-					}
-				)
+				vm.$onChanges = function (changes) {
+					if (lodash.has(changes, 'name'))
+						vm.worker.name	= changes.name.currentValue;
+					if (lodash.has(changes, 'stars'))
+						vm.worker.stars	= changes.stars.currentValue;
+				}
 
 				vm.acceptWorker = acceptWorker;
 				//vm.cancelWorker = cancelWorker;

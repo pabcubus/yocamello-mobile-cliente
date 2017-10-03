@@ -12,7 +12,10 @@
 
 				vm.openMenu			= openMenu;
 				vm.selectOption		= selectOption;
-				vm.currentWorker	= {};
+				vm.currentWorker	= {
+					name: 'Pablo Bassil',
+					stars: 4
+				};
 
 				function openMenu($mdMenu, ev) {
 					$mdMenu.open(ev);
@@ -24,7 +27,7 @@
 					WorkerService.getWorker()
 						.then(function(worker){
 							UIService.hideLoadingScreen();
-							
+
 							vm.currentWorker = {
 								name: worker.name,
 								stars: worker.stars

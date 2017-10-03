@@ -1,26 +1,19 @@
 <div style="visibility: hidden">
 	<div class="md-dialog-container" id="workerDlg">
 		<md-dialog aria-label="Mango (Fruit)">
-			<form ng-cloak>
-				<md-toolbar class="md-warn">
-					<div class="md-toolbar-tools">
-						<h2>{{wc.title}}</h2>
-						<span flex></span>
-					</div>
-				</md-toolbar>
+			<md-dialog-content>
+				<div class="md-dialog-content">
+					<h2>{{wc.title}}</h2>
 
-				<md-dialog-content>
-					<div class="md-dialog-content">
-						<jk-rating-stars class="md-dialog-stars" read-only="true" rating="{{wc.worker.stars}}">
-						</jk-rating-stars>
-						<h3 class="md-dialog-title">{{wc.worker.name}}</h3>
-						<div layout="row">
-							<md-button flex class="md-raised md-warn" ng-click="wc.acceptWorker()">Aceptar</md-button>
-							<md-button flex class="md-raised md-warn">Cancelar</md-button>
-						</div>
+					<jk-rating-stars class="md-dialog-stars" read-only="true" rating="wc.worker.stars">
+					</jk-rating-stars>
+					<h3 class="md-dialog-title">{{wc.worker.name}}</h3>
+					<div layout="row">
+						<md-button flex class="md-raised md-warn" ng-click="wc.acceptWorker()">Aceptar</md-button>
+						<md-button flex class="md-raised md-warn">Cancelar</md-button>
 					</div>
-				</md-dialog-content>
-			</form>
+				</div>
+			</md-dialog-content>
 		</md-dialog>
 	</div>
 </div>
