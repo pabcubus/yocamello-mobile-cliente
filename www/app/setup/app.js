@@ -14,25 +14,26 @@
 				'jkAngularRatingStars',
 
 				// Services
-				'services/GoogleMapsService',
-				'services/SessionService',
-				'services/MenuService',
-				'services/UIService',
-				'services/WorkerService',
-
-				// Directives
-
-				// Controllers
-				'AppController',
-				'screens/home/js/HomeController',
-				'screens/login/js/LoginController',
+				'app/services/GoogleMapsService',
+				'app/services/SessionService',
+				'app/services/MenuService',
+				'app/services/UIService',
+				'app/services/WorkerService',
 
 				// Controllers for components
-				'components/worker/js/WorkerController',
+				'app/components/worker/js/WorkerController',
+
+				// Directives and Components
+				'app/components/worker/js/WorkerComponent',
+
+				// Controllers
+				'app/AppController',
+				'app/screens/home/js/HomeController',
+				'app/screens/login/js/LoginController',
 
 				// ConfigServices
 				//'setup/runConfig',
-				'setup/routesConfig'
+				'app/setup/routesConfig'
 			],
 			function(
 				ng,
@@ -54,15 +55,16 @@
 				UIService,
 				WorkerService,
 
-				// Directives
+				// Controllers for Directives and Components
+				WorkerController,
+
+				// Directives and Components
+				WorkerComponent,
 
 				// Controllers
 				AppController,
 				HomeController,
 				LoginController,
-
-				// Controllers for modules
-				WorkerController,
 
 				// ConfigServices
 				//runConfig,
@@ -76,15 +78,16 @@
 					.service(UIService.registeredName, UIService)
 					.service(WorkerService.registeredName, WorkerService)
 
-					// Directives
+					// Controllers for modules
+					.controller(WorkerController.registeredName, WorkerController)
+
+					// Directives and Components
+					.component('worker', WorkerComponent)
 
 					// Controllers
 					.controller(AppController.registeredName, AppController)
 					.controller(HomeController.registeredName, HomeController)
 					.controller(LoginController.registeredName, LoginController)
-
-					// Controllers for modules
-					.controller(WorkerController.registeredName, WorkerController)
 
 					//.run(runConfig)
 					.config(routesConfig);

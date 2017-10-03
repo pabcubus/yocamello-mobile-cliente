@@ -9,7 +9,7 @@
 			<a
 				class="home-link-btn"
 				ng-click="hc.openMenu($mdMenu, $event)"
-				style="background-image: url(images/menu/{{menu.menuIcon}});">
+				style="background-image: url(app/images/menu/{{menu.menuIcon}});">
 				{{menu.text}}
 
 				<p>
@@ -18,11 +18,13 @@
 			</a>
 			<md-menu-content width="4">
 				<md-menu-item ng-repeat="subitem in menu.submenu">
-					<md-button>
+					<md-button ng-click="hc.selectOption($event)">
 						{{subitem.text}}
 					</md-button>
 				</md-menu-item>
 			</md-menu-content>
 		</md-menu>
 	</div>
+
+	<worker name="{{hc.currentWorker.name}}" stars="{{hc.currentWorker.stars}}"></worker>
 </div>

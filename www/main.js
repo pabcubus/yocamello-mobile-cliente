@@ -37,7 +37,7 @@
 
 		deps: [
 			// kick start application... see bootstrap.js
-			'setup/app.js'
+			'app/setup/app.js'
 		]
 	});
 })();

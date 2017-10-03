@@ -10,10 +10,10 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					'styles/shared.css': 'styles/shared.scss',
+					'app/styles/shared.css': 'app/styles/shared.scss',
 
-					'styles/login.css': 'styles/login.scss',
-					'styles/home.css': 'styles/home.scss'
+					'app/styles/login.css': 'app/styles/login.scss',
+					'app/styles/home.css': 'app/styles/home.scss'
 				}
 			}
 		},

@@ -12,9 +12,9 @@
 	<link rel="stylesheet" href="bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min.css">
 	<link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
 
-	<link href="styles/shared.min.css" rel="stylesheet">
-	<link href="styles/login.min.css" rel="stylesheet">
-	<link href="styles/home.min.css" rel="stylesheet">
+	<link href="app/styles/shared.min.css" rel="stylesheet">
+	<link href="app/styles/login.min.css" rel="stylesheet">
+	<link href="app/styles/home.min.css" rel="stylesheet">
 </head>
 
 <body
@@ -22,9 +22,11 @@
 	layout="column"
 	ng-cloak>
 
-	<div flex layout="column" ng-include="'app_frame.html'"></div>
+	<div flex layout="column" ng-include="'app/app_frame.html'"></div>
 
 	<script type="text/javascript" data-main="main" src="bower_components/requirejs/require.js"></script>
+
+	<div ng-include="'app/modules/popups/loading/html/loading.html'"></div>
 </body>
 
 </html>

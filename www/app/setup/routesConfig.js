@@ -6,13 +6,13 @@ define([], function() {
 			$stateProvider
 				.state('login', {
 					url: '/login',
-					templateUrl: 'screens/login/html/login.html',
+					templateUrl: 'app/screens/login/html/login.html',
 					controller: 'LoginController',
 					controllerAs: 'lc'
 				})
 				.state('home', {
 					url: '/home',
-					templateUrl: 'screens/home/html/home.html',
+					templateUrl: 'app/screens/home/html/home.html',
 					controller: 'HomeController',
 					controllerAs: 'hc'
 				});

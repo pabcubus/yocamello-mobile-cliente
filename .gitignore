@@ -3,8 +3,8 @@
 /node_modules
 /www/bower_components
 /www/node_modules
-/www/styles/.sass-cache
-/www/styles/*.css
+/www/**/.sass-cache
+/www/**/*.css
 /.gradle
 .DS_Store
 package-lock.json

@@ -3,17 +3,35 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$scope', '$mdDialog', 'GoogleMapsService', 'MenuService'];
+			var ngDependencies = ['$scope', '$timeout', 'MenuService', 'UIService', 'WorkerService'];
 
-			var HomeController = function($scope, $mdDialog, GoogleMapsService, MenuService) {
-				var vm = this;
+			var HomeController = function($scope, $timeout, MenuService, UIService, WorkerService) {
+				var vm				= this;
 
-				vm.menuOptions = MenuService.getMenuOptions();
+				vm.menuOptions		= MenuService.getMenuOptions();
 
-				vm.openMenu = openMenu;
+				vm.openMenu			= openMenu;
+				vm.selectOption		= selectOption;
+				vm.currentWorker	= {};
 
 				function openMenu($mdMenu, ev) {
 					$mdMenu.open(ev);
+				};
+
+				function selectOption(ev) {
+					UIService.showLoadingScreen(ev);
+
+					WorkerService.getWorker()
+						.then(function(worker){
+							UIService.hideLoadingScreen();
+							
+							vm.currentWorker = {
+								name: worker.name,
+								stars: worker.stars
+							}
+
+							WorkerService.showWorkerDialog(ev);
+						});
 				};
 
 				/*
