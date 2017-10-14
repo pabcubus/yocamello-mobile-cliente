@@ -8,22 +8,33 @@
 			var UIService = function($mdDialog) {
 				var vm = this;
 
-				vm.showLoadingScreen = showLoadingScreen;
-				vm.hideLoadingScreen = hideLoadingScreen;
+				vm.loading = {
+					'shown': false,
+					'text': ''
+				}
 
-				function showLoadingScreen(ev){
-					$mdDialog.show(
-						{
-							contentElement: '#loadingDlg',
-							parent: angular.element(document.body),
-							targetEvent: ev,
-							clickOutsideToClose: false
-						}
-					);
+				vm.showLoadingScreen	= showLoadingScreen;
+				vm.hideLoadingScreen	= hideLoadingScreen;
+				vm.getLoadingState		= getLoadingState;
+				vm.getLoadingText		= getLoadingText;
+
+				function showLoadingScreen(text){
+					vm.loading = {
+						'shown': true,
+						'text': text
+					};
 				};
 
 				function hideLoadingScreen(){
-					$mdDialog.hide();
+					vm.loading.shown = false;
+				};
+
+				function getLoadingState(){
+					return vm.loading.shown;
+				};
+
+				function getLoadingText(){
+					return vm.loading.text;
 				};
 			};
 

@@ -21,15 +21,18 @@
 				'app/services/WorkerService',
 
 				// Controllers for components
+				'app/components/loading/js/LoadingController',
 				'app/components/worker/js/WorkerController',
 
 				// Directives and Components
+				'app/components/loading/js/LoadingComponent',
 				'app/components/worker/js/WorkerComponent',
 
 				// Controllers
 				'app/AppController',
 				'app/screens/home/js/HomeController',
 				'app/screens/login/js/LoginController',
+				'app/screens/estado/js/EstadoController',
 
 				// ConfigServices
 				//'setup/runConfig',
@@ -56,15 +59,18 @@
 				WorkerService,
 
 				// Controllers for Directives and Components
+				LoadingController,
 				WorkerController,
 
 				// Directives and Components
+				LoadingComponent,
 				WorkerComponent,
 
 				// Controllers
 				AppController,
 				HomeController,
 				LoginController,
+				EstadoController,
 
 				// ConfigServices
 				//runConfig,
@@ -79,15 +85,18 @@
 					.service(WorkerService.registeredName, WorkerService)
 
 					// Controllers for modules
+					.controller(LoadingController.registeredName, LoadingController)
 					.controller(WorkerController.registeredName, WorkerController)
 
 					// Directives and Components
+					.component('loading', LoadingComponent)
 					.component('worker', WorkerComponent)
 
 					// Controllers
 					.controller(AppController.registeredName, AppController)
 					.controller(HomeController.registeredName, HomeController)
 					.controller(LoginController.registeredName, LoginController)
+					.controller(EstadoController.registeredName, EstadoController)
 
 					//.run(runConfig)
 					.config(routesConfig);

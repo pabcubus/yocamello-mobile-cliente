@@ -1,0 +1,39 @@
+.estado {
+	padding: 10px;
+
+	.estado-card {
+		border-radius: 5px;
+		background-color: #ddd;
+
+		/*-webkit-box-shadow: 0 8px 15px -8px black;
+		-moz-box-shadow: 0 8px 15px -8px black;
+		box-shadow: 0 8px 15px -8px black;*/
+
+		.estado-card-text {
+			padding: 10px;
+		}
+
+		.estado-card-title {
+			border-radius: 5px 5px 0 0;
+			color: white;
+			padding: 5px 10px;
+			font-size: 13px;
+
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b20000+0,ff5723+100 */
+			background: #b20000;
+			/* Old browsers */
+			background: -moz-linear-gradient(left, #b20000 0%, #ff5723 100%);
+			/* FF3.6-15 */
+			background: -webkit-linear-gradient(left, #b20000 0%,#ff5723 100%);
+			/* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to right, #b20000 0%,#ff5723 100%);
+			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= '#b20000', endColorstr='#ff5723',GradientType=1 );
+			/* IE6-9 */
+		}
+
+		&:not(:first-child) {
+			margin-top: 10px;
+		}
+	}
+}

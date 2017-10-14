@@ -3,14 +3,17 @@
 		<md-dialog aria-label="Mango (Fruit)">
 			<md-dialog-content>
 				<div class="md-dialog-content">
-					<h2>{{wc.title}}</h2>
+					<h2 class="md-dialog-title">{{wc.title}}</h2>
 
-					<jk-rating-stars class="md-dialog-stars" read-only="true" rating="wc.worker.stars">
-					</jk-rating-stars>
-					<h3 class="md-dialog-title">{{wc.worker.name}}</h3>
+					<div class="worker">
+						<h3 class="md-dialog-name">{{wc.worker.name}}</h3>
+						<jk-rating-stars class="md-dialog-stars" read-only="true" rating="wc.worker.stars">
+						</jk-rating-stars>
+					</div>
+
 					<div layout="row">
 						<md-button flex class="md-raised md-warn" ng-click="wc.acceptWorker()">Aceptar</md-button>
-						<md-button flex class="md-raised md-warn">Cancelar</md-button>
+						<md-button flex class="md-raised md-warn" ng-click="wc.cancelWorker()">Cancelar</md-button>
 					</div>
 				</div>
 			</md-dialog-content>

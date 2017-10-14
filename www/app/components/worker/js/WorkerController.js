@@ -15,31 +15,21 @@
 				}
 
 				vm.$onChanges = function (changes) {
-					if (lodash.has(changes, 'name'))
-						vm.worker.name	= changes.name.currentValue;
-					if (lodash.has(changes, 'stars'))
-						vm.worker.stars	= changes.stars.currentValue;
+					if (lodash.has(changes, 'worker'))
+						vm.worker = changes.worker.currentValue;
 				}
 
 				vm.acceptWorker = acceptWorker;
-				//vm.cancelWorker = cancelWorker;
+				vm.cancelWorker = cancelWorker;
 
 				function acceptWorker() {
+					vm.onAccept();
+					$mdDialog.hide();
+				}
+
+				function cancelWorker() {
 					$mdDialog.cancel();
 				}
-/*
-				function cancelWorker(ev) {
-					$mdDialog.cancel()
-						.then(function(){
-							$mdDialog.show(
-								$mdDialog.alert({
-									title: 'Info',
-									textContent: 'Has cancelado al trabajador',
-									ok: 'OK'
-								})
-							);
-						});
-				}*/
 			};
 
 			WorkerController.$inject = ngDependencies;

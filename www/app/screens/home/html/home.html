@@ -18,7 +18,7 @@
 			</a>
 			<md-menu-content width="4">
 				<md-menu-item ng-repeat="subitem in menu.submenu">
-					<md-button ng-click="hc.selectOption($event)">
+					<md-button ng-click="hc.selectOption()">
 						{{subitem.text}}
 					</md-button>
 				</md-menu-item>
@@ -26,5 +26,8 @@
 		</md-menu>
 	</div>
 
-	<worker name="hc.currentWorker.name" stars="hc.currentWorker.stars"></worker>
+	<worker
+		worker="hc.currentWorker"
+		on-accept="hc.acceptWorker()">
+	</worker>
 </div>

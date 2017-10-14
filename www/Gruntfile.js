@@ -10,10 +10,13 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					'app/styles/shared.css': 'app/styles/shared.scss',
+					'app/styles/shared.css'	: 'app/styles/shared.scss',
 
-					'app/styles/login.css': 'app/styles/login.scss',
-					'app/styles/home.css': 'app/styles/home.scss'
+					'app/styles/worker.css'	: 'app/styles/worker.scss',
+
+					'app/styles/login.css'	: 'app/styles/login.scss',
+					'app/styles/home.css'	: 'app/styles/home.scss',
+					'app/styles/estado.css'	: 'app/styles/estado.scss'
 				}
 			}
 		},
@@ -29,9 +32,9 @@ module.exports = function(grunt) {
 			target: {
 				files: [{
 					expand: true,
-					cwd: 'styles',
+					cwd: 'app/styles',
 					src: ['*.css', '!*.min.css'],
-					dest: 'styles',
+					dest: 'app/styles',
 					ext: '.min.css'
 				}]
 			}

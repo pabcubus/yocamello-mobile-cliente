@@ -3,26 +3,35 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$scope', '$timeout', 'MenuService', 'UIService', 'WorkerService'];
+			var ngDependencies = ['$state', '$scope', '$timeout', 'MenuService', 'UIService', 'WorkerService'];
 
-			var HomeController = function($scope, $timeout, MenuService, UIService, WorkerService) {
+			var HomeController = function($state, $scope, $timeout, MenuService, UIService, WorkerService) {
 				var vm				= this;
 
 				vm.menuOptions		= MenuService.getMenuOptions();
 
+
 				vm.openMenu			= openMenu;
 				vm.selectOption		= selectOption;
-				vm.currentWorker	= {
-					name: 'Pablo Bassil',
-					stars: 4
-				};
+				vm.acceptWorker		= acceptWorker
+
+				vm.currentWorker	= {};
+
+				onInit();
+
+				function onInit(){
+					vm.currentWorker	= {
+						name: 'Pablo Bassil',
+						stars: 4
+					};
+				}
 
 				function openMenu($mdMenu, ev) {
 					$mdMenu.open(ev);
 				};
 
-				function selectOption(ev) {
-					UIService.showLoadingScreen(ev);
+				function selectOption() {
+					UIService.showLoadingScreen('Buscando...');
 
 					WorkerService.getWorker()
 						.then(function(worker){
@@ -33,9 +42,18 @@
 								stars: worker.stars
 							}
 
-							WorkerService.showWorkerDialog(ev);
+							$timeout(function(){
+								WorkerService.showWorkerDialog();
+							}, 100);
 						});
 				};
+
+				function acceptWorker() {
+					alert('Trabajador Aceptado!');
+					$state.go('estado');
+				};
+
+
 
 				/*
 				vm.map = {};
