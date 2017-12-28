@@ -10,11 +10,6 @@ define([], function() {
 				} else {
 					$location.path('/login');
 				}
-
-				$rootScope.$broadcast('SET_SESSION_DATA', {
-					'user': SessionService.user,
-					'logedIn': SessionService.logedIn
-				});
 			});
 		}
 		config.$inject = ['$rootScope', '$location', 'SessionService', 'HelperService'];

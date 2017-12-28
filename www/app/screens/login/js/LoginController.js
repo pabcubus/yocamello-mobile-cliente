@@ -3,16 +3,18 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$state', 'SessionService'];
+			var ngDependencies = ['$rootScope', '$state', 'SessionService'];
 
-			var LoginController = function($state, SessionService) {
+			var LoginController = function($rootScope, $state, SessionService) {
 				var vm = this;
 
-				vm.login = login;
+				vm.login	= login;
+				vm.user		= {};
 
 				function login() {
-					SessionService.login()
+					SessionService.login(vm.user)
 						.then(function(){
+							$rootScope.$broadcast('LOGIN');
 							$state.go('home');
 						});
 				}

@@ -1,13 +1,27 @@
 <div flex layout="column" class="login">
 	<div flex layout="column">
 		<div flex="90">
-			<md-whiteframe class="login-wrapper md-whiteframe-1dp" flex layout="column" layout-align="center center">
-				<input class="yc-input" type="text" placeholder="User">
-				<input class="yc-input" type="password" placeholder="Password">
-				<md-button ng-click="lc.login();" class="md-raised md-warn">Ingresar</md-button>
+			<md-whiteframe
+				class="login-wrapper md-whiteframe-1dp"
+				flex
+				layout="column">
+
+				<md-input-container md-no-float class="md-block login-input">
+					<input type="text" placeholder="Usuario" ng-model="lc.user.username">
+				</md-input-container>
+				<md-input-container md-no-float class="md-block login-input">
+					<input type="password" placeholder="Contraseña" ng-model="lc.user.password">
+				</md-input-container>
+
+				<md-button
+					flex
+					ng-click="lc.login();"
+					class="md-raised md-warn">
+					Ingresar
+				</md-button>
 			</md-whiteframe>
 		</div>
-		<div flex layout="row">
+		<div flex layout="column">
 			<div flex layout="row" layout-align="center center">
 				<a href="#">Crear Cuenta</a>
 			</div>

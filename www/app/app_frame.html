@@ -1,4 +1,4 @@
-<div flex layout="column">
+<div flex layout="column" class="main-view">
 	<div flex="nogrow" layout="column" ng-show="ac.isLogedIn()" ng-include="'app/modules/navbar/html/navbar.html'"></div>
-	<div flex layout="column" ui-view></div>
+	<div flex class="main-view-container" layout="column" ui-view></div>
 </div>

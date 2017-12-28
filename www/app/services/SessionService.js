@@ -3,14 +3,14 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$q', 'lodash'];
+			var ngDependencies = ['$q', 'lodash', 'HelperService'];
 
-			var SessionService = function($q, lodash) {
+			var SessionService = function($q, lodash, HelperService) {
 				var vm = this;
 
 				vm.user		= {
 					username: '',
-					name: '',
+					password: '',
 					loged: false
 				};
 
@@ -18,16 +18,20 @@
 				vm.logout	= logout;
 				vm.getUser	= getUser;
 
-				function login(){
+				_checkUser();
+
+				function login(user){
 					var deferred = $q.defer();
 
 					vm.user		= {
-						username: 'pbassil',
-						name: 'Pablo Bassil',
+						username: user.username,
+						password: user.password,
 						loged: true
 					};
 
-					deferred.resolve();
+					deferred.resolve(vm.user);
+
+					HelperService.storage.set(HelperService.constants.LOCALSTORAGE_USER_TAG, vm.user, true);
 
 					return deferred.promise;
 				}
@@ -37,7 +41,7 @@
 
 					vm.user		= {
 						username: '',
-						name: '',
+						password: '',
 						loged: false
 					};
 
@@ -48,6 +52,10 @@
 
 				function getUser(){
 					return vm.user;
+				}
+
+				function _checkUser(){
+					vm.user = HelperService.session.getUser();
 				}
 			};
 

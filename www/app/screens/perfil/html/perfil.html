@@ -1,0 +1,31 @@
+<div flex layout="column" class="perfil">
+	<md-card md-theme="default" md-theme-watch>
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">{{pc.perfil.nombre}}</span>
+				<span class="md-subhead">{{pc.perfil.username}}</span>
+			</md-card-title-text>
+			<md-card-title-media>
+				<div class="md-media-xl card-media">
+					<img src="app/images/user.jpg" alt="">
+				</div>
+			</md-card-title-media>
+		</md-card-title>
+	</md-card>
+	<md-card class="perfil-info" md-theme="default" md-theme-watch>
+		<md-input-container>
+			<label>Email</label>
+			<input ng-model="pc.perfil.email">
+		</md-input-container>
+
+		<md-input-container>
+			<label>Direccion</label>
+			<input ng-model="pc.perfil.direccion">
+		</md-input-container>
+
+		<md-input-container>
+			<label>Telefono</label>
+			<input ng-model="pc.perfil.telefono">
+		</md-input-container>
+	</md-card>
+</div>

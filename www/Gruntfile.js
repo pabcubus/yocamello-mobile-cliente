@@ -16,7 +16,8 @@ module.exports = function(grunt) {
 
 					'app/styles/login.css'	: 'app/styles/login.scss',
 					'app/styles/home.css'	: 'app/styles/home.scss',
-					'app/styles/estado.css'	: 'app/styles/estado.scss'
+					'app/styles/estado.css'	: 'app/styles/estado.scss',
+					'app/styles/perfil.css'	: 'app/styles/perfil.scss'
 				}
 			}
 		},

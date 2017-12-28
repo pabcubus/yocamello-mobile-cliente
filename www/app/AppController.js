@@ -9,19 +9,32 @@
 				var vm = this;
 
 				vm.user 			= {};
-				vm.toggleUserNav 	= buildToggler('user-nav');
+				vm.sidenavId		= 'user-nav';
+
+				vm.toggleUserNav 	= buildToggler(vm.sidenavId);
 				vm.isLogedIn 		= isLogedIn;
 				vm.logout			= logout;
+				vm.closeSideNav		= closeSideNav;
 
 				function isLogedIn() {
 					var user = SessionService.getUser();
 					return user.loged;
 				}
 
+				$scope.$on('LOGIN', function(){
+					if ($mdSidenav(vm.sidenavId).isOpen()) {
+						vm.toggleUserNav();
+					}
+				})
+
 				function buildToggler(componentId) {
 					return function() {
 						$mdSidenav(componentId).toggle();
 					};
+				}
+
+				function closeSideNav(){
+					$mdSidenav(vm.sidenavId).close();
 				}
 
 				function logout(){

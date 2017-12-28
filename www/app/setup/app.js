@@ -14,25 +14,27 @@
 				'jkAngularRatingStars',
 
 				// Services
+				'app/services/HelperService',
 				'app/services/GoogleMapsService',
 				'app/services/SessionService',
 				'app/services/MenuService',
 				'app/services/UIService',
-				'app/services/WorkerService',
+				'app/services/SolicitudService',
 
 				// Controllers for components
 				'app/components/loading/js/LoadingController',
-				'app/components/worker/js/WorkerController',
+				'app/components/trabajador/js/TrabajadorController',
 
 				// Directives and Components
 				'app/components/loading/js/LoadingComponent',
-				'app/components/worker/js/WorkerComponent',
+				'app/components/trabajador/js/TrabajadorComponent',
 
 				// Controllers
 				'app/AppController',
 				'app/screens/home/js/HomeController',
 				'app/screens/login/js/LoginController',
 				'app/screens/estado/js/EstadoController',
+				'app/screens/perfil/js/PerfilController',
 
 				// ConfigServices
 				//'setup/runConfig',
@@ -52,25 +54,27 @@
 				jkAngularRatingStars,
 
 				// Services
+				HelperService,
 				GoogleMapsService,
 				SessionService,
 				MenuService,
 				UIService,
-				WorkerService,
+				SolicitudService,
 
 				// Controllers for Directives and Components
 				LoadingController,
-				WorkerController,
+				TrabajadorController,
 
 				// Directives and Components
 				LoadingComponent,
-				WorkerComponent,
+				TrabajadorComponent,
 
 				// Controllers
 				AppController,
 				HomeController,
 				LoginController,
 				EstadoController,
+				PerfilController,
 
 				// ConfigServices
 				//runConfig,
@@ -78,25 +82,27 @@
 			) {
 				ng.module('yocamello', ['ngMaterial', 'ui.router', 'angular-md5', 'ngLodash', 'jkAngularRatingStars'])
 					// Services
+					.service(HelperService.registeredName, HelperService)
 					.service(GoogleMapsService.registeredName, GoogleMapsService)
 					.service(SessionService.registeredName, SessionService)
 					.service(MenuService.registeredName, MenuService)
 					.service(UIService.registeredName, UIService)
-					.service(WorkerService.registeredName, WorkerService)
+					.service(SolicitudService.registeredName, SolicitudService)
 
 					// Controllers for modules
 					.controller(LoadingController.registeredName, LoadingController)
-					.controller(WorkerController.registeredName, WorkerController)
+					.controller(TrabajadorController.registeredName, TrabajadorController)
 
 					// Directives and Components
 					.component('loading', LoadingComponent)
-					.component('worker', WorkerComponent)
+					.component('trabajador', TrabajadorComponent)
 
 					// Controllers
 					.controller(AppController.registeredName, AppController)
 					.controller(HomeController.registeredName, HomeController)
 					.controller(LoginController.registeredName, LoginController)
 					.controller(EstadoController.registeredName, EstadoController)
+					.controller(PerfilController.registeredName, PerfilController)
 
 					//.run(runConfig)
 					.config(routesConfig);

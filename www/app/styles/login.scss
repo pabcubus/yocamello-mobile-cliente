@@ -1,11 +1,12 @@
 .login{
 	.login-wrapper{
 		margin: 20% 10% 0;
-		padding: 20px 0;
+		padding: 20px 10px;
 		border-radius: 10px;
+		box-sizing: border-box;
 
-		input, a{
-			width: 80%;
+		.login-input{
+			margin: 5px;
 		}
 	}
 }

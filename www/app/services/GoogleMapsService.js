@@ -23,10 +23,25 @@
 					}
 				};
 
-				vm.createMap = createMap;
-				vm.setSite = setSite;
-				vm.setWorker = setWorker;
-				vm.centerMap = centerMap;
+				vm.createMap 		= createMap;
+				vm.setSite 			= setSite;
+				vm.setWorker 		= setWorker;
+				vm.centerMap 		= centerMap;
+				vm.createStaticMap 	= createStaticMap;
+
+				function createStaticMap(points){
+					if (!lodash.isArray(points) || (points.length <= 0)) {
+						return '';
+					}
+
+					let src = 'https://maps.googleapis.com/maps/api/staticmap?size=500x500&maptype=roadmap&key=' + 'AIzaSyDQ-rRq16rEIUX7-dOk5UBM0eEIwJEGDTk';
+
+					points.forEach(function(point){
+						src += '&markers=color:' + point.color + '%7C' + point.coordinates;
+					});
+
+					return src;
+				}
 
 				function createMap(divId, disableDefaultUI, zoom) {
 					var component	= document.getElementById(divId);
