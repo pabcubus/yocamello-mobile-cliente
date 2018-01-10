@@ -1,10 +1,11 @@
 define([], function() {
 		function config($rootScope, $location, SessionService, HelperService) {
 			$rootScope.$on('$locationChangeSuccess', function(event, next, current) {
-				if (SessionService.logedIn) {
+				let user = SessionService.getUser();
+				if (user.loged) {
 					var path = $location.path();
 					var valid = HelperService.string.checkStringRegex(path, /^(\/(\w|\?|\&)+)+$/i);
-					var url = valid && (path != '/login') ? path : '/overview';
+					var url = valid && (path != '/login') ? path : '/home';
 
 					$location.path(url);
 				} else {

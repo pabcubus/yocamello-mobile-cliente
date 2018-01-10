@@ -3,9 +3,9 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$q', 'lodash', 'HelperService'];
+			var ngDependencies = ['$state', '$q', 'lodash', 'HelperService', 'SchemaService'];
 
-			var SessionService = function($q, lodash, HelperService) {
+			var SessionService = function($state, $q, lodash, HelperService, SchemaService) {
 				var vm = this;
 
 				vm.user		= {
@@ -45,6 +45,8 @@
 						loged: false
 					};
 
+					HelperService.storage.remove(HelperService.constants.LOCALSTORAGE_USER_TAG);
+
 					deferred.resolve();
 
 					return deferred.promise;
@@ -56,6 +58,16 @@
 
 				function _checkUser(){
 					vm.user = HelperService.session.getUser();
+
+					if (!SchemaService.validateUser(vm.user)){
+						HelperService.storage.remove(HelperService.constants.LOCALSTORAGE_USER_TAG);
+						vm.user		= {
+							username: '',
+							password: '',
+							loged: false
+						};
+						$state.go('login');
+					}
 				}
 			};
 

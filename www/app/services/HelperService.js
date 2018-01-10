@@ -193,11 +193,7 @@
 						if (user != null) {
 							user.loged	= true;
 						} else {
-							user = {
-								username: '',
-								password: '',
-								loged: false
-							};
+							user = null;
 						}
 
 						return user;

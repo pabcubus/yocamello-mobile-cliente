@@ -12,6 +12,7 @@
 				'angular-messages',
 				'angular-material',
 				'jkAngularRatingStars',
+				'zSchema',
 
 				// Services
 				'app/services/HelperService',
@@ -20,6 +21,7 @@
 				'app/services/MenuService',
 				'app/services/UIService',
 				'app/services/SolicitudService',
+				'app/services/SchemaService',
 
 				// Controllers for components
 				'app/components/loading/js/LoadingController',
@@ -37,7 +39,7 @@
 				'app/screens/perfil/js/PerfilController',
 
 				// ConfigServices
-				//'setup/runConfig',
+				'app/setup/runConfig',
 				'app/setup/routesConfig'
 			],
 			function(
@@ -52,6 +54,7 @@
 				angularMessages,
 				angularMaterial,
 				jkAngularRatingStars,
+				zSchema,
 
 				// Services
 				HelperService,
@@ -60,6 +63,7 @@
 				MenuService,
 				UIService,
 				SolicitudService,
+				SchemaService,
 
 				// Controllers for Directives and Components
 				LoadingController,
@@ -77,7 +81,7 @@
 				PerfilController,
 
 				// ConfigServices
-				//runConfig,
+				runConfig,
 				routesConfig
 			) {
 				ng.module('yocamello', ['ngMaterial', 'ui.router', 'angular-md5', 'ngLodash', 'jkAngularRatingStars'])
@@ -88,6 +92,7 @@
 					.service(MenuService.registeredName, MenuService)
 					.service(UIService.registeredName, UIService)
 					.service(SolicitudService.registeredName, SolicitudService)
+					.service(SchemaService.registeredName, SchemaService)
 
 					// Controllers for modules
 					.controller(LoadingController.registeredName, LoadingController)
@@ -104,7 +109,7 @@
 					.controller(EstadoController.registeredName, EstadoController)
 					.controller(PerfilController.registeredName, PerfilController)
 
-					//.run(runConfig)
+					.run(runConfig)
 					.config(routesConfig);
 
 				ng.bootstrap(document, ['yocamello']);

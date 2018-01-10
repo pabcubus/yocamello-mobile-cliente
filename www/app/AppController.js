@@ -16,16 +16,16 @@
 				vm.logout			= logout;
 				vm.closeSideNav		= closeSideNav;
 
-				function isLogedIn() {
-					var user = SessionService.getUser();
-					return user.loged;
-				}
-
 				$scope.$on('LOGIN', function(){
 					if ($mdSidenav(vm.sidenavId).isOpen()) {
 						vm.toggleUserNav();
 					}
 				})
+
+				function isLogedIn() {
+					var user = SessionService.getUser();
+					return user.loged;
+				}
 
 				function buildToggler(componentId) {
 					return function() {

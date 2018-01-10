@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 		},
 		shell: {
 			serve: {
-				command: 'serve'
+				command: 'serve -p 3000'
 			},
 			serve_prod: {
 				command: 'serve -p 80'
