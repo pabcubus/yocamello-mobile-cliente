@@ -7,7 +7,12 @@
 
 	.worker{
 		padding: 30px 0;
-		
+
+		.worker-pic{
+			border-radius: 50%;
+			width: 70%;
+		}
+
 		.md-dialog-stars{
 			display: inline-block;
 		}
