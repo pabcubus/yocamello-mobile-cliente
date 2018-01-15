@@ -3,9 +3,9 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$timeout', '$scope', '$state', 'GoogleMapsService'];
+			var ngDependencies = ['$timeout', '$scope', '$state', 'GoogleMapsService', 'UIService'];
 
-			var EstadoController = function($timeout, $scope, $state, GoogleMapsService) {
+			var EstadoController = function($timeout, $scope, $state, GoogleMapsService, UIService) {
 				var vm	= this;
 
 				vm.solicitud = {
@@ -75,11 +75,16 @@
 								}
 							}
 						);
-					}, 1000);
+					}, 3000);
 				}
 
 				function terminarTrabajo(){
-					$state.go('terminado');
+					UIService.showLoadingScreen('Terminando el trabajo');
+
+					$timeout(function(){
+						$state.go('terminado');
+						UIService.hideLoadingScreen();
+					}, 3000);
 				}
 			};
 
