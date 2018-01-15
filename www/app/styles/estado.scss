@@ -9,10 +9,6 @@
 		-moz-box-shadow: 0 8px 15px -8px black;
 		box-shadow: 0 8px 15px -8px black;*/
 
-		.estado-card-text {
-			padding: 10px;
-		}
-
 		.estado-card-title {
 			border-radius: 5px 5px 0 0;
 			color: white;
@@ -32,9 +28,13 @@
 			/* IE6-9 */
 		}
 
-		.estado-card-map{
-			img{
-				width: 100%;
+		.estado-card-wrapper{
+			padding: 10px;
+
+			.estado-card-map{
+				img{
+					width: 100%;
+				}
 			}
 		}
 

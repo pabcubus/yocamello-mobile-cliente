@@ -3,11 +3,21 @@
 		<div class="estado-card-title">
 			{{estado.date}}
 		</div>
-		<div class="estado-card-text">
-			{{estado.estado.nombre}}
-		</div>
-		<div class="estado-card-map" ng-show="estado.estado.id == 3">
-			<img src="{{ec.mapa}}">
+		<div class="estado-card-wrapper">
+			<div class="estado-card-text">
+				{{estado.estado.nombre}}
+			</div>
+			<div class="estado-card-map" ng-show="estado.estado.id == 3">
+				<img src="{{ec.mapa}}">
+			</div>
+			<div class="estado-card-finish" ng-show="estado.estado.id == 4">
+				<md-button
+					flex
+					ng-click="ec.terminarTrabajo()"
+					class="md-raised md-warn">
+					Terminar Trabajo
+				</md-button>
+			</div>
 		</div>
 	</div>
 </div>

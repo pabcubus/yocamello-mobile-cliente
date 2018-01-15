@@ -10,14 +10,15 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					'app/styles/shared.css'	: 'app/styles/shared.scss',
+					'app/styles/shared.css'		: 'app/styles/shared.scss',
 
-					'app/styles/worker.css'	: 'app/styles/worker.scss',
+					'app/styles/worker.css'		: 'app/styles/worker.scss',
 
-					'app/styles/login.css'	: 'app/styles/login.scss',
-					'app/styles/home.css'	: 'app/styles/home.scss',
-					'app/styles/estado.css'	: 'app/styles/estado.scss',
-					'app/styles/perfil.css'	: 'app/styles/perfil.scss'
+					'app/styles/login.css'		: 'app/styles/login.scss',
+					'app/styles/home.css'		: 'app/styles/home.scss',
+					'app/styles/estado.css'		: 'app/styles/estado.scss',
+					'app/styles/perfil.css'		: 'app/styles/perfil.scss',
+					'app/styles/terminado.css'	: 'app/styles/terminado.scss'
 				}
 			}
 		},

@@ -3,9 +3,9 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$scope', 'GoogleMapsService'];
+			var ngDependencies = ['$timeout', '$scope', '$state', 'GoogleMapsService'];
 
-			var EstadoController = function($scope, GoogleMapsService) {
+			var EstadoController = function($timeout, $scope, $state, GoogleMapsService) {
 				var vm	= this;
 
 				vm.solicitud = {
@@ -45,6 +45,8 @@
 					]
 				};
 
+				vm.terminarTrabajo = terminarTrabajo;
+
 				_init()
 
 				function _init(){
@@ -61,6 +63,23 @@
 						]
 						vm.mapa = GoogleMapsService.createStaticMap(points);
 					}
+
+					$timeout(function(){
+						vm.solicitud.estados.push(
+							{
+								id: 4,
+								date: '2017-08-12 12:00:00',
+								estado: {
+									id: 4,
+									nombre: 'Terminado'
+								}
+							}
+						);
+					}, 1000);
+				}
+
+				function terminarTrabajo(){
+					$state.go('terminado');
 				}
 			};
 

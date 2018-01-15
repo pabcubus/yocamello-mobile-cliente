@@ -27,6 +27,12 @@ define([], function() {
 					templateUrl: 'app/screens/perfil/html/perfil.html',
 					controller: 'PerfilController',
 					controllerAs: 'pc'
+				})
+				.state('terminado', {
+					url: '/terminado',
+					templateUrl: 'app/screens/terminado/html/terminado.html',
+					controller: 'TerminadoController',
+					controllerAs: 'tc'
 				});
 		}
 		config.$inject = ['$urlRouterProvider', '$stateProvider', '$compileProvider'];
