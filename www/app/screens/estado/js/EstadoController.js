@@ -79,12 +79,15 @@
 				}
 
 				function terminarTrabajo(){
-					UIService.showLoadingScreen('Terminando el trabajo');
+					let terminado = confirm('Deseas terminar el trabajo?');
+					if (terminado) {
+						UIService.showLoadingScreen('Terminando el trabajo');
 
-					$timeout(function(){
-						$state.go('terminado');
-						UIService.hideLoadingScreen();
-					}, 3000);
+						$timeout(function(){
+							$state.go('terminado');
+							UIService.hideLoadingScreen();
+						}, 3000);
+					}
 				}
 			};
 
