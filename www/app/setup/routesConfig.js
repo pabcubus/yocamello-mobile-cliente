@@ -28,6 +28,12 @@ define([], function() {
 					controller: 'PerfilController',
 					controllerAs: 'pc'
 				})
+				.state('servicios', {
+					url: '/servicios',
+					templateUrl: 'app/screens/servicios/html/servicios.html',
+					controller: 'ServiciosController',
+					controllerAs: 'sc'
+				})
 				.state('terminado', {
 					url: '/terminado',
 					templateUrl: 'app/screens/terminado/html/terminado.html',

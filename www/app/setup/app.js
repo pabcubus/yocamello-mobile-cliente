@@ -38,6 +38,7 @@
 				'app/screens/estado/js/EstadoController',
 				'app/screens/perfil/js/PerfilController',
 				'app/screens/terminado/js/TerminadoController',
+				'app/screens/servicios/js/ServiciosController',
 
 				// ConfigServices
 				'app/setup/runConfig',
@@ -81,6 +82,7 @@
 				EstadoController,
 				PerfilController,
 				TerminadoController,
+				ServiciosController,
 
 				// ConfigServices
 				runConfig,
@@ -111,6 +113,7 @@
 					.controller(EstadoController.registeredName, EstadoController)
 					.controller(PerfilController.registeredName, PerfilController)
 					.controller(TerminadoController.registeredName, TerminadoController)
+					.controller(ServiciosController.registeredName, ServiciosController)
 
 					.run(runConfig)
 					.config(routesConfig);

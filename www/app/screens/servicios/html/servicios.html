@@ -1,13 +1,22 @@
-<div flex layout="column" class="estado">
-	<div class="estado-card" ng-repeat="estado in ec.solicitud.estados">
-		<div class="estado-card-title">
-			{{estado.date}}
+<div flex layout="column" class="servicios">
+	<md-whiteframe
+		ng-repeat="servicio in sc.servicios"
+		class="md-whiteframe-1dp servicio"
+		flex-sm="45"
+		flex-gt-sm="35"
+		flex-gt-md="25"
+		layout-align="left center"
+		layout-margin
+		layout-padding>
+		
+		<div class="servicio-title">
+			<strong>
+				Servicio:
+			</strong>
+			{{servicio.servicio.name}}
 		</div>
-		<div class="estado-card-text">
-			{{estado.descripcion}}
+		<div class="servicio-estado" ng-class="servicio.estado.name == 'Finalizado' ? 'finalizado' : 'else'">
+			{{servicio.estado.name}}
 		</div>
-		<div class="estado-card-map" ng-show="estado.id == 2">
-			
-		</div>
-	</div>
+	</md-whiteframe>
 </div>

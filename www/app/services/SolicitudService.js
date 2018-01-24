@@ -20,11 +20,15 @@
 							id: 1,
 							estado: {
 								id: 4,
-								nombre: 'Finalizado'
+								name: 'Finalizado'
 							},
 							trabajador: {
 								name: 'Jorge Perez',
 								stars: 4
+							},
+							servicio: {
+								id: 2,
+								name: 'Lavandería'
 							},
 							estados: [
 								{
@@ -65,11 +69,15 @@
 							id: 2,
 							estado: {
 								id: 3,
-								nombre: 'En Camino'
+								name: 'En Camino'
 							},
 							trabajador: {
 								name: 'Jorge Perez',
 								stars: 4
+							},
+							servicio: {
+								id: 1,
+								name: 'Carpintería'
 							},
 							estados: [
 								{
@@ -99,6 +107,14 @@
 							]
 						}
 					]
+
+					let deferred = $q.defer();
+
+					$timeout(function(){
+						deferred.resolve(services);
+					}, 2000);
+
+					return deferred.promise;
 				};
 
 				function getTrabajador(ev){

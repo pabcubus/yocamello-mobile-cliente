@@ -3,12 +3,26 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['SolicitudService'];
+			var ngDependencies = ['SolicitudService', 'UIService'];
 
-			var ServiciosController = function(SolicitudService) {
+			var ServiciosController = function(SolicitudService, UIService) {
 				var vm	= this;
 
-				vm.servicios = SolicitudService.getServicesAvailable();
+				_init();
+
+				function _init(){
+					UIService.showLoadingScreen('Buscando servicios');
+
+					SolicitudService.getServicesAvailable()
+						.then(function(servicios){
+							vm.servicios = servicios;
+						})
+						.catch(function(){
+						})
+						.finally(function(){
+							UIService.hideLoadingScreen('Buscando servicios');
+						})
+				}
 			};
 
 			ServiciosController.$inject = ngDependencies;

@@ -1,0 +1,25 @@
+.servicios{
+	.servicio{
+		.servicio-title{
+			padding: 0;
+			margin: 0;
+			font-size: 12px;
+		}
+
+		.servicio-estado{
+			padding: 5px;
+			margin: 5px 0 0;
+			border-radius: 5px;
+			display: inline-block;
+
+			&.finalizado{
+				background-color: green;
+				color: white;
+			}
+			&.else{
+				background-color: rgb(255,87,34);
+				color: white;
+			}
+		}
+	}
+}
