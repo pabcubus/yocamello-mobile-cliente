@@ -1,5 +1,45 @@
 .servicios{
+	.servicios-title{
+		text-align: center;
+	}
+
 	.servicio{
+		.servicio-location{
+			margin: 0;
+			padding: 0;
+
+			img{
+				width: 100%;
+			}
+		}
+
+		.servicio-info{
+			margin: 0;
+			padding: 0;
+			font-size: 15px;
+
+			div > div{
+				padding: 5px;
+			}
+
+			.servicio-estado{
+				padding: 5px;
+				margin: 5px 0 0;
+				border-radius: 5px;
+				display: inline-block;
+
+				&.finalizado{
+					background-color: green;
+					color: white;
+				}
+				&.else{
+					background-color: rgb(255,87,34);
+					color: white;
+				}
+			}
+		}
+
+		/*
 		.servicio-title{
 			padding: 0;
 			margin: 0;
@@ -21,5 +61,6 @@
 				color: white;
 			}
 		}
+		*/
 	}
 }

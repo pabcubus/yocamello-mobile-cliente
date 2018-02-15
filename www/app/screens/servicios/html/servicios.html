@@ -1,4 +1,8 @@
 <div flex layout="column" class="servicios">
+	<h3 class="servicios-title">
+		Tus Servicios
+	</h3>
+
 	<md-whiteframe
 		ng-repeat="servicio in sc.servicios"
 		class="md-whiteframe-1dp servicio"
@@ -8,7 +12,34 @@
 		layout-align="left center"
 		layout-margin
 		layout-padding>
-		
+
+		<div class="servicio-location">
+			<img src="{{servicio.mapUrl}}"/>
+		</div>
+
+		<div class="servicio-info" layout="column">
+			<div layout="row">
+				<div flex>
+					{{servicio.servicio.name}}
+				</div>
+				<div flex>
+					$ 5.000 COP
+				</div>
+			</div>
+			<div layout="row">
+				<div flex>
+					<div class="servicio-estado" ng-class="servicio.estado.name == 'Finalizado' ? 'finalizado' : 'else'">
+						{{servicio.estado.name}}
+					</div>
+				</div>
+				<div flex>
+					{{servicio.ultima_act}}
+				</div>
+			</div>
+		</div>
+
+		<!--
+
 		<div class="servicio-title">
 			<strong>
 				Servicio:
@@ -18,5 +49,6 @@
 		<div class="servicio-estado" ng-class="servicio.estado.name == 'Finalizado' ? 'finalizado' : 'else'">
 			{{servicio.estado.name}}
 		</div>
+	-->
 	</md-whiteframe>
 </div>

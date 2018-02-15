@@ -29,15 +29,15 @@
 				vm.centerMap 		= centerMap;
 				vm.createStaticMap 	= createStaticMap;
 
-				function createStaticMap(points){
+				function createStaticMap(points, width, height){
 					if (!lodash.isArray(points) || (points.length <= 0)) {
 						return '';
 					}
 
-					let src = 'https://maps.googleapis.com/maps/api/staticmap?size=500x500&maptype=roadmap&key=' + 'AIzaSyDQ-rRq16rEIUX7-dOk5UBM0eEIwJEGDTk';
+					let src = 'https://maps.googleapis.com/maps/api/staticmap?size=' + (width ? width : '500') + 'x' + (height ? height : '500') + '&maptype=roadmap&key=' + 'AIzaSyDQ-rRq16rEIUX7-dOk5UBM0eEIwJEGDTk';
 
 					points.forEach(function(point){
-						src += '&markers=color:' + point.color + '%7C' + point.coordinates;
+						src += '&markers=color:' + (point.color ? 'red' : point.color) + '%7C' + point.coordinates;
 					});
 
 					return src;
