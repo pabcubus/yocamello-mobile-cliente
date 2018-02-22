@@ -6,6 +6,7 @@
 	"author": "",
 	"license": "ISC",
 	"scripts": {
+		"start": "npm install && bower install && grunt serve",
 		"prepare-win": "npm install -g bower grunt",
 		"prepare-mac": "sudo npm install -g bower grunt",
 		"serve-win": "npm install & bower install & grunt serve",

@@ -49,7 +49,6 @@
 				};
 
 				function acceptTrabajador() {
-					alert('Trabajador Aceptado!');
 					$state.go('estado');
 				};
 			};

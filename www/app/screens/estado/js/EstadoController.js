@@ -3,12 +3,14 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$timeout', '$scope', '$state', 'GoogleMapsService', 'UIService'];
+			var ngDependencies = ['lodash', '$timeout', '$scope', '$state', 'GoogleMapsService', 'UIService'];
 
-			var EstadoController = function($timeout, $scope, $state, GoogleMapsService, UIService) {
+			var EstadoController = function(lodash, $timeout, $scope, $state, GoogleMapsService, UIService) {
 				var vm	= this;
 
-				vm.solicitud = {
+				vm.map			= {};
+				vm.markers		= [];
+				vm.solicitud 	= {
 					estado: {
 						id: 3,
 						nombre: 'En Camino'
@@ -50,21 +52,23 @@
 				_init()
 
 				function _init(){
+					let points;
 					if (vm.solicitud.estado.id == 3) {
-						let points = [
+						points = [
 							{
-								color: 'red',
-								coordinates: '11.017027,-74.80831'
+								latitude: 11.017027,
+								longitude: -74.80831
 							},
 							{
-								color: 'green',
-								coordinates: '11.019807,-74.804016'
+								latitude: 11.019807,
+								longitude: -74.804016
 							}
-						]
-						vm.mapa = GoogleMapsService.createStaticMap(points);
+						];
 					}
 
 					$timeout(function(){
+						vm.map = GoogleMapsService.createMap('estado-card-map-wrapper');
+
 						vm.solicitud.estados.push(
 							{
 								id: 4,
@@ -75,7 +79,10 @@
 								}
 							}
 						);
-					}, 3000);
+
+						_locateSites(points);
+
+					}, 1000);
 				}
 
 				function terminarTrabajo(){
@@ -87,6 +94,37 @@
 							$state.go('terminado');
 							UIService.hideLoadingScreen();
 						}, 3000);
+					}
+				}
+
+				function _locateSites(points){
+					if (!points || !lodash.isArray(points) || !vm.map) {
+						return;
+					}
+
+					// first we clear all the points on the map
+					lodash.forEach(vm.markers, function(site) {
+						site.setMap( null );
+					});
+					vm.markers = [];
+
+					// then paint the new points on the map
+					var newMarkers = angular.copy(points);
+					if (lodash.isArray( newMarkers ) && newMarkers.length > 0) {
+						newMarkers.forEach(function(point, index){
+							vm.markers.push(
+								GoogleMapsService.setMarker(
+									vm.map,
+									parseFloat(point.latitude),
+									parseFloat(point.longitude),
+									index
+								)
+							);
+						});
+
+						GoogleMapsService.centerMap(vm.map, vm.markers);
+					} else {
+						GoogleMapsService.centerMap(vm.map);
 					}
 				}
 			};

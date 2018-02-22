@@ -7,10 +7,11 @@
 			<div class="estado-card-text">
 				{{estado.estado.nombre}}
 			</div>
-			<div class="estado-card-map" ng-show="estado.estado.id == 3">
-				<img src="{{ec.mapa}}">
+			<div class="estado-card-map" ng-if="estado.estado.id == 3">
+				<div class="estado-card-map-wrapper" id="estado-card-map-wrapper">
+				</div>
 			</div>
-			<div class="estado-card-finish" id="estado-card-finish" ng-show="estado.estado.id == 4">
+			<div class="estado-card-finish" ng-show="estado.estado.id == 4" layout="row">
 				<md-button
 					flex
 					ng-click="ec.terminarTrabajo()"
