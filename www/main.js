@@ -16,7 +16,8 @@
 			'angular-messages':			'bower_components/angular-messages/angular-messages.min',
 			'angular-material':			'bower_components/angular-material/angular-material.min',
 			'jkAngularRatingStars':		'bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min',
-			'zSchema':					'bower_components/z-schema/dist/ZSchema-browser-min'
+			'zSchema':					'bower_components/z-schema/dist/ZSchema-browser-min',
+			'jsSHA':					'bower_components/jsSHA/src/sha'
 		},
 
 		shim: {
@@ -32,7 +33,8 @@
 			'angular-messages':			{ exports: 'angular-messages', deps: ['angular'] },
 			'angular-material':			{ exports: 'angular-material', deps: ['angular'] },
 			'jkAngularRatingStars':		{ exports: 'jkAngularRatingStars', deps: ['angular'] },
-			'zSchema':					{ exports: 'zSchema', deps: ['angular'] }
+			'zSchema':					{ exports: 'zSchema', deps: ['angular'] },
+			'jsSHA':					{ exports: 'jsSHA', deps: ['angular'] }
 		},
 
 		waitSeconds: 15,

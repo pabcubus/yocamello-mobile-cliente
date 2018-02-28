@@ -9,6 +9,18 @@ module.exports = function(grunt) {
 				sourceMap: false
 			},
 			dist: {
+				files: [
+					{
+						expand: true,
+						cwd: 'app/styles',
+						src: ['*.scss', '!*.css'],
+						dest: 'app/styles',
+						ext: '.min.css'
+					}
+				]
+
+				/*
+
 				files: {
 					'app/styles/shared.css'		: 'app/styles/shared.scss',
 
@@ -21,6 +33,8 @@ module.exports = function(grunt) {
 					'app/styles/terminado.css'	: 'app/styles/terminado.scss',
 					'app/styles/servicios.css'	: 'app/styles/servicios.scss'
 				}
+
+				*/
 			}
 		},
 		shell: {
@@ -53,8 +67,8 @@ module.exports = function(grunt) {
 			}
 		},
 		concurrent: {
-			serve: ['shell:serve', 'watch:sass', 'watch:cssmin'],
-			serve_prod: ['shell:serve_prod', 'watch:sass', 'watch:cssmin']
+			serve: ['shell:serve', 'watch:sass'],
+			serve_prod: ['shell:serve_prod', 'watch:sass']
 		}
 	});
 
@@ -63,13 +77,11 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('serve', [
 		'sass',
-		'cssmin',
 		'concurrent:serve'
 	]);
 
 	grunt.registerTask('serve_prod', [
 		'sass',
-		'cssmin',
 		'concurrent:serve_prod'
 	]);
 };

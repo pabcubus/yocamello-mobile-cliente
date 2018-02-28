@@ -1,9 +1,26 @@
 define([], function() {
-		function config($urlRouterProvider, $stateProvider, $compileProvider) {
+		function config(
+				$stateProvider,
+				$compileProvider,
+				$locationProvider,
+				$mdGestureProvider,
+				$urlRouterProvider
+			) {
+
 			$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
+
+			$mdGestureProvider.skipClickHijack();
+
+			$locationProvider.hashPrefix('');
 
 			$urlRouterProvider.otherwise('/login');
 			$stateProvider
+				.state('registro', {
+					url: '/registro',
+					templateUrl: 'app/screens/registro/html/registro.html',
+					controller: 'RegistroController',
+					controllerAs: 'reg'
+				})
 				.state('login', {
 					url: '/login',
 					templateUrl: 'app/screens/login/html/login.html',
@@ -41,7 +58,13 @@ define([], function() {
 					controllerAs: 'tc'
 				});
 		}
-		config.$inject = ['$urlRouterProvider', '$stateProvider', '$compileProvider'];
+		config.$inject = [
+			'$stateProvider',
+			'$compileProvider',
+			'$locationProvider',
+			'$mdGestureProvider',
+			'$urlRouterProvider'
+		];
 
 		return config;
 	}

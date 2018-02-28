@@ -1,11 +1,11 @@
 (function() {
 	'use strict';
 
-	define([],
-		function() {
-			var ngDependencies = ['$state', '$q', 'lodash', 'HelperService', 'SchemaService'];
+	define(['jsSHA'],
+		function(jsSHA) {
+			var ngDependencies = ['$state', '$q', 'lodash', 'HelperService', 'SchemaService', 'DataService'];
 
-			var SessionService = function($state, $q, lodash, HelperService, SchemaService) {
+			var SessionService = function($state, $q, lodash, HelperService, SchemaService, DataService) {
 				var vm = this;
 
 				vm.user		= {
@@ -21,22 +21,54 @@
 				_checkUser();
 
 				function login(user){
-					var deferred = $q.defer();
+					let deferred = $q.defer();
+
+					let shaObj = new jsSHA("SHA-256", "TEXT");
+					shaObj.update(user.password);
+					let newPass = shaObj.getHash("HEX");
 
 					vm.user		= {
 						username: user.username,
-						password: user.password,
-						loged: true
+						password: newPass
 					};
 
-					deferred.resolve(vm.user);
+					DataService.performOperation('/rest/auth', 'POST', vm.user)
+						.then(function(result){
+							vm.user.token	= result;
+							vm.user.loged	= true;
 
-					HelperService.storage.set(HelperService.constants.LOCALSTORAGE_USER_TAG, vm.user, true);
+							HelperService.storage.set(HelperService.constants.LOCALSTORAGE_USER_TAG, vm.user, true);
+
+							deferred.resolve(vm.user);
+						})
+						.catch(function(error){
+							vm.logout();
+							deferred.reject({
+								code: '01',
+								message: 'Error al loguearte. Intenta mas tarde.'
+							});
+						});
 
 					return deferred.promise;
 				}
 
 				function logout(){
+					var deferred = $q.defer();
+
+					vm.user		= {
+						username: '',
+						password: '',
+						loged: false
+					};
+
+					HelperService.storage.remove(HelperService.constants.LOCALSTORAGE_USER_TAG);
+
+					deferred.resolve();
+
+					return deferred.promise;
+				}
+
+				function registerUser(){
 					var deferred = $q.defer();
 
 					vm.user		= {

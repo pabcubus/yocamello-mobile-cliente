@@ -13,13 +13,13 @@
 		"serve-mac": "npm install && bower install && grunt serve"
 	},
 	"dependencies": {
-		"grunt": "^1.0.1",
+		"grunt": "^1.0.2",
 		"grunt-concurrent": "^2.3.1",
 		"grunt-contrib-cssmin": "^2.2.1",
 		"grunt-contrib-watch": "^1.0.0",
-		"grunt-sass": "^2.0.0",
+		"grunt-sass": "^2.1.0",
 		"grunt-shell": "^2.1.0",
 		"load-grunt-tasks": "^3.5.2",
-		"serve": "^6.4.3"
+		"serve": "^6.5.0"
 	}
 }

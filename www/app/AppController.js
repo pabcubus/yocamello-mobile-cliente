@@ -13,6 +13,7 @@
 
 				vm.toggleUserNav 	= buildToggler(vm.sidenavId);
 				vm.isLogedIn 		= isLogedIn;
+				vm.login			= login;
 				vm.logout			= logout;
 				vm.closeSideNav		= closeSideNav;
 
@@ -42,6 +43,10 @@
 						.then(function(){
 							$state.go('login');
 						});
+				}
+
+				function login() {
+					console.log('hi!');
 				}
 			};
 

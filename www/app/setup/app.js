@@ -13,8 +13,10 @@
 				'angular-material',
 				'jkAngularRatingStars',
 				'zSchema',
+				'jsSHA',
 
 				// Services
+				'app/services/DataService',
 				'app/services/HelperService',
 				'app/services/GoogleMapsService',
 				'app/services/SessionService',
@@ -33,6 +35,7 @@
 
 				// Controllers
 				'app/AppController',
+				'app/screens/registro/js/RegistroController',
 				'app/screens/home/js/HomeController',
 				'app/screens/login/js/LoginController',
 				'app/screens/estado/js/EstadoController',
@@ -57,8 +60,10 @@
 				angularMaterial,
 				jkAngularRatingStars,
 				zSchema,
+				jsSHA,
 
 				// Services
+				DataService,
 				HelperService,
 				GoogleMapsService,
 				SessionService,
@@ -77,6 +82,7 @@
 
 				// Controllers
 				AppController,
+				RegistroController,
 				HomeController,
 				LoginController,
 				EstadoController,
@@ -90,6 +96,7 @@
 			) {
 				ng.module('yocamello', ['ngMaterial', 'ui.router', 'angular-md5', 'ngLodash', 'jkAngularRatingStars'])
 					// Services
+					.service(DataService.registeredName, DataService)
 					.service(HelperService.registeredName, HelperService)
 					.service(GoogleMapsService.registeredName, GoogleMapsService)
 					.service(SessionService.registeredName, SessionService)
@@ -108,6 +115,7 @@
 
 					// Controllers
 					.controller(AppController.registeredName, AppController)
+					.controller(RegistroController.registeredName, RegistroController)
 					.controller(HomeController.registeredName, HomeController)
 					.controller(LoginController.registeredName, LoginController)
 					.controller(EstadoController.registeredName, EstadoController)

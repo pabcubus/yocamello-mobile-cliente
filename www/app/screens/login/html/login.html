@@ -3,27 +3,29 @@
 		<div flex="90">
 			<md-whiteframe
 				class="login-wrapper md-whiteframe-1dp"
-				flex
-				layout="column">
+				layout="column"
+				flex>
 
-				<md-input-container md-no-float class="md-block login-input">
-					<input type="text" placeholder="Usuario" ng-model="lc.user.username">
-				</md-input-container>
-				<md-input-container md-no-float class="md-block login-input">
-					<input type="password" placeholder="Contraseña" ng-model="lc.user.password">
-				</md-input-container>
+				<form ng-submit="lc.login()" layout="column">
+					<md-input-container md-no-float class="md-block login-input">
+						<input type="text" placeholder="Usuario" ng-model="lc.user.username" required>
+					</md-input-container>
+					<md-input-container md-no-float class="md-block login-input">
+						<input type="password" placeholder="Contraseña" ng-model="lc.user.password" required>
+					</md-input-container>
 
-				<md-button
-					flex
-					ng-click="lc.login();"
-					class="md-raised md-warn">
-					Ingresar
-				</md-button>
+					<md-button
+						flex
+						type="submit"
+						class="md-raised md-warn">
+						Ingresar
+					</md-button>
+				</form>
 			</md-whiteframe>
 		</div>
 		<div flex layout="column">
 			<div flex layout="row" layout-align="center center">
-				<a href="#">Crear Cuenta</a>
+				<a ui-sref="registro">Crear Cuenta</a>
 			</div>
 			<div flex layout="row" layout-align="center center">
 				<a href="#">Olvide mi Contraseña</a>
