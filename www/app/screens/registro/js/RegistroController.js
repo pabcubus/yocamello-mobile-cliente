@@ -1,8 +1,8 @@
 (function() {
 	'use strict';
 
-	define([],
-		function() {
+	define(['jsSHA', 'moment'],
+		function(jsSHA, moment) {
 			var ngDependencies = ['SessionService', '$rootScope', '$state'];
 
 			var RegistroController = function(SessionService, $rootScope, $state) {
@@ -24,7 +24,30 @@
 				vm.registrar	= registrar;
 
 				function registrar() {
-					console.log('vm.user: ', vm.user);
+					if (vm.password2 != vm.user.usecurity.password) {
+						alert('Las contraseñas no son iguales');
+					}
+
+					let shaObj = new jsSHA("SHA-256", "TEXT");
+					shaObj.update(vm.user.usecurity.password);
+					let newPass = shaObj.getHash("HEX");
+
+					vm.user.birthDate			= moment(vm.user.birthDate).format('YYYY-MM-DD');
+					vm.user.usecurity.password 	= newPass;
+					vm.user.usecurity.email 	= vm.user.email;
+
+					SessionService.registerUser(vm.user)
+						.then(function(){
+							$state.go('login');
+
+							alert('Estas registrado. Logueate!');
+						})
+						.catch(function(err){
+							alert(err.message);
+						})
+						.finally(function(){
+							vm.user.usecurity.password = vm.password2;
+						});
 				}
 			};
 

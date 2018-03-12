@@ -9,16 +9,16 @@
 			<a
 				class="home-link-btn"
 				ng-click="hc.openMenu($mdMenu, $event)">
-				{{menu.text}}
+				{{menu.name}}
 
 				<p>
-					{{menu.description}}
+					--
 				</p>
 			</a>
 			<md-menu-content width="4">
-				<md-menu-item ng-repeat="subitem in menu.submenu">
+				<md-menu-item ng-repeat="subitem in menu.serviceTypeList">
 					<md-button ng-click="hc.selectOption()">
-						{{subitem.text}}
+						{{subitem.name}}
 					</md-button>
 				</md-menu-item>
 			</md-menu-content>

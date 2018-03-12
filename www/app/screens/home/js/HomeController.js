@@ -8,8 +8,7 @@
 			var HomeController = function($state, $scope, $timeout, MenuService, UIService, SolicitudService) {
 				var vm					= this;
 
-				vm.menuOptions			= MenuService.getMenuOptions();
-
+				vm.menuOptions			= [];
 
 				vm.openMenu				= openMenu;
 				vm.selectOption			= selectOption;
@@ -24,6 +23,11 @@
 						name: 'Pablo Bassil',
 						stars: 4
 					};
+
+					MenuService.getMenuOptions()
+						.then(function(result){
+							vm.menuOptions = result;
+						});
 				}
 
 				function openMenu($mdMenu, ev) {

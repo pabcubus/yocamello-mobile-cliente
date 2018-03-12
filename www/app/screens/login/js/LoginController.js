@@ -16,7 +16,10 @@
 
 				function login() {
 					SessionService.login(vm.user)
-						.then(function(){
+						.then(function(data){
+
+							vm.user	= data;
+
 							$rootScope.$broadcast('LOGIN');
 							$state.go('home');
 						})

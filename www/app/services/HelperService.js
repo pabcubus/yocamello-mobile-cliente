@@ -9,7 +9,8 @@
 				var vm = this;
 
 				vm.constants = {
-					LOCALSTORAGE_USER_TAG: 'yo-camello-user'
+					LOCALSTORAGE_USER_TAG: 'yo-camello-user',
+					LOCALSTORAGE_TOKEN_TAG: 'yo-camello-token'
 				};
 
 				vm.converters = {
@@ -188,7 +189,7 @@
 				vm.session = {
 					getUser: function() {
 						var user	= vm.storage.get(vm.constants.LOCALSTORAGE_USER_TAG, true);
-						user		= lodash.isObject(user) && lodash.has(user, 'username') && lodash.has(user, 'password') ? user : null;
+						user		= lodash.isObject(user) && lodash.has(user, 'email') && lodash.has(user, 'usecurity.password') ? user : null;
 
 						if (user != null) {
 							user.loged	= true;

@@ -13,11 +13,16 @@
 						'title': 'Usuario Schema',
 						'type': 'object',
 						'properties': {
-							'username' : { 'type': 'string', 'minLength' : 2 },
-							'password' : { 'type': 'string', 'minLength' : 2 },
-							'loged' : { 'type': 'boolean' }
+							'id' : 				{ 'type': 'integer' },
+							'active' : 			{ 'type': 'boolean' },
+							'creationDate' : 	{ 'type': 'string', 'minLength' : 2 },
+							'email' : 			{ 'type': 'string', 'minLength' : 2 },
+							'lang' : 			{ 'type': 'string', 'minLength' : 2 },
+							'name' : 			{ 'type': 'string', 'minLength' : 2 },
+							'lastname' : 		{ 'type': 'string', 'minLength' : 2 },
+							'phoneNumber' : 	{ 'type': 'string', 'minLength' : 2 }
 						},
-						'required': ['username', 'password', 'loged']
+						'required': ['id', 'active', 'creationDate', 'email', 'lang', 'name', 'lastname', 'phoneNumber']
 					}
 				};
 

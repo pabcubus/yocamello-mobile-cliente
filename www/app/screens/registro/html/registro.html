@@ -15,10 +15,6 @@
 
 	<form layout="column" ng-submit="reg.registrar()" flex>
 		<md-input-container>
-			<label>Identificación</label>
-			<input type="number" ng-model="reg.user.identification" required>
-		</md-input-container>
-		<md-input-container>
 			<label>e-mail</label>
 			<input type="email" ng-model="reg.user.email" required>
 		</md-input-container>
@@ -31,31 +27,8 @@
 			<input type="text" ng-model="reg.user.lastname" required>
 		</md-input-container>
 		<md-input-container>
-			<label>Direccion</label>
-			<input type="text" ng-model="reg.user.address" required>
-		</md-input-container>
-		<md-input-container>
 			<label>Telefono</label>
 			<input type="text" ng-model="reg.user.phoneNumber" required>
-		</md-input-container>
-		<md-input-container>
-			<label>Fecha de Nacimiento</label>
-			<div layout="row" flex>
-				<md-datepicker
-					class="registro-datepicker"
-					ng-model="reg.user.birthDate"
-					md-hide-icons="calendar"
-					required
-					flex>
-				</md-datepicker>
-			</div>
-		</md-input-container>
-
-		<md-input-container>
-			<md-radio-group ng-model="reg.user.genre" layout="row">
-				<md-radio-button value="M">Masculino</md-radio-button>
-				<md-radio-button value="F">Femenino</md-radio-button>
-			</md-radio-group>
 		</md-input-container>
 
 		<md-input-container>
@@ -74,24 +47,3 @@
 		</md-button>
 	</form>
 </div>
-
-<!-- {
-  "identification": 72345254,
-  "email": "pbassil@client.com",
-  "name": "Pablo",
-  "lastname": "Bassil",
-  "address": "Calle 32",
-  "phoneNumber": "+57-3019082712",
-  "birthDate": "1985-05-10",
-  "genre": "M",
-  "lang": "ES",
-  "active": true,
-  "creationDate": "2017-08-20T19:15:00",
-  "usecurity": {
-    "email": "pbassil@client.com",
-    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "secretQuestion": "¿Cuál es su color favorito?",
-    "secretAnswer": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "groupRole": "CLIENT"
-  }
-} -->

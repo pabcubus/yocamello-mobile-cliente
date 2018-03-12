@@ -15,6 +15,10 @@
 					direccion: 'Calle 45 #76-09',
 					telefono: '300 895 6598'
 				};
+
+				$scope.$on('$viewContentLoaded', function(event){
+					console.log('loaded!');
+				});
 			};
 
 			PerfilController.$inject = ngDependencies;
