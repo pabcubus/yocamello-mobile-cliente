@@ -2,8 +2,7 @@
 	<md-card md-theme="default" md-theme-watch>
 		<md-card-title>
 			<md-card-title-text>
-				<span class="md-headline">{{pc.perfil.nombre}}</span>
-				<span class="md-subhead">{{pc.perfil.username}}</span>
+				<span class="md-headline">{{pc.user.name + ' ' + pc.user.lastname}}</span>
 			</md-card-title-text>
 			<md-card-title-media>
 				<div class="md-media-xl card-media">
@@ -15,17 +14,12 @@
 	<md-card class="perfil-info" md-theme="default" md-theme-watch>
 		<md-input-container>
 			<label>Email</label>
-			<input ng-model="pc.perfil.email">
-		</md-input-container>
-
-		<md-input-container>
-			<label>Direccion</label>
-			<input ng-model="pc.perfil.direccion">
+			<input ng-model="pc.user.email">
 		</md-input-container>
 
 		<md-input-container>
 			<label>Telefono</label>
-			<input ng-model="pc.perfil.telefono">
+			<input ng-model="pc.user.phoneNumber">
 		</md-input-container>
 	</md-card>
 </div>

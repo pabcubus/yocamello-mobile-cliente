@@ -3,21 +3,15 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$scope'];
+			var ngDependencies = ['$scope', 'SessionService'];
 
-			var PerfilController = function($scope) {
+			var PerfilController = function($scope, SessionService) {
 				var vm	= this;
 
-				vm.perfil = {
-					nombre: 'Pablo Bassil',
-					email: 'pbassil@gmail.com',
-					username: 'pbassil',
-					direccion: 'Calle 45 #76-09',
-					telefono: '300 895 6598'
-				};
+				vm.user = {};
 
 				$scope.$on('$viewContentLoaded', function(event){
-					console.log('loaded!');
+					vm.user = SessionService.getUser();
 				});
 			};
 
