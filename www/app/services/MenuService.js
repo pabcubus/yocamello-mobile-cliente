@@ -10,42 +10,10 @@
 
 				vm.getMenuOptions = getMenuOptions;
 
-				// let menuOptions = [
-				// 	{
-				// 		text: 'Hogar',
-				// 		menuIcon: 'home.png',
-				// 		description: 'Deseas un trabajador para tu hogar?',
-				// 		submenu: [
-				// 			{
-				// 				text: 'Empleadas'
-				// 			},
-				// 			{
-				// 				text: 'Limpieza'
-				// 			},
-				// 			{
-				// 				text: 'Carpinteros'
-				// 			}
-				// 		]
-				// 	},
-				// 	{
-				// 		text: 'Automoviles',
-				// 		menuIcon: 'auto.png',
-				// 		description: 'Tienes algun problema con tu automovil?',
-				// 		submenu: [
-				// 			{
-				// 				text: 'Mecanicos'
-				// 			},
-				// 			{
-				// 				text: 'Cambio de Batería'
-				// 			}
-				// 		]
-				// 	}
-				// ];
-
 				function getMenuOptions(){
 					var deferred	= $q.defer();
 
-					DataService.performOperation(true, '/rest/services/types/nearby?lat=10.93917&lng=-74.79304', 'GET')
+					DataService.performOperation(true, '/rest/services/types/nearby?lat=10.936224&lng=-74.794044', 'GET')
 						.then(function(result){
 							deferred.resolve(result.data);
 						})

@@ -3,86 +3,38 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['lodash', '$timeout', '$scope', '$state', 'GoogleMapsService', 'UIService'];
+			var ngDependencies = ['lodash', '$timeout', '$scope', '$state', '$stateParams', 'SessionService', 'SolicitudService', 'UIService'];
 
-			var EstadoController = function(lodash, $timeout, $scope, $state, GoogleMapsService, UIService) {
+			var EstadoController = function(lodash, $timeout, $scope, $state, $stateParams, SessionService, SolicitudService, UIService) {
 				var vm	= this;
 
-				vm.map			= {};
-				vm.markers		= [];
-				vm.solicitud 	= {
-					estado: {
-						id: 3,
-						nombre: 'En Camino'
-					},
-					trabajador: {
-						name: 'Jorge Perez',
-						stars: 4
-					},
-					estados: [
-						{
-							id: 1,
-							date: '2017-08-12 11:15:00',
-							estado: {
-								id: 1,
-								nombre: 'Confirmado'
-							}
-						},
-						{
-							id: 2,
-							date: '2017-08-12 11:20:00',
-							estado: {
-								id: 2,
-								nombre: 'En Alistamiento'
-							}
-						},
-						{
-							id: 3,
-							date: '2017-08-12 11:20:00',
-							estado: {
-								id: 3,
-								nombre: 'En Camino'
-							}
-						}
-					]
+				vm.solicitud		= {
+					serviceId: 0,
+					estados: []
 				};
 
-				vm.terminarTrabajo = terminarTrabajo;
+				vm.terminarTrabajo	= terminarTrabajo;
+				vm.cancelarTrabajo	= cancelarTrabajo;
+				vm.checkInterval	= null;
+				vm.user				= {};
 
 				_init()
 
 				function _init(){
-					let points;
-					if (vm.solicitud.estado.id == 3) {
-						points = [
-							{
-								latitude: 11.017027,
-								longitude: -74.80831
-							},
-							{
-								latitude: 11.019807,
-								longitude: -74.804016
-							}
-						];
-					}
+					vm.user					= SessionService.getUser();
+					vm.solicitud.serviceId	= $stateParams.serviceId;
 
-					$timeout(function(){
-						vm.map = GoogleMapsService.createMap('estado-card-map-wrapper');
+					vm.checkInterval = setInterval(() => {
+						SolicitudService.historySolicitud(vm.user, vm.solicitud).then(function(response){
+							vm.solicitud.estados = response.serviceHistory;
 
-						vm.solicitud.estados.push(
-							{
-								id: 4,
-								date: '2017-08-12 12:00:00',
-								estado: {
-									id: 4,
-									nombre: 'Terminado'
+							if (lodash.isArray(vm.solicitud.estados) &&
+								vm.solicitud.estados.length > 0 &&
+								vm.solicitud.estados[vm.solicitud.estados.length - 1].status == 'OP'){
+									clearInterval(vm.checkInterval);
 								}
-							}
-						);
-
-						_locateSites(points);
-
-					}, 1000);
+						});
+					}, 3000);
 				}
 
 				function terminarTrabajo(){
@@ -90,41 +42,39 @@
 					if (terminado) {
 						UIService.showLoadingScreen('Terminando el trabajo');
 
-						$timeout(function(){
-							$state.go('terminado');
-							UIService.hideLoadingScreen();
-						}, 3000);
+						let promises = [
+							SolicitudService.doneSolicitud(vm.user, vm.solicitud),
+							SolicitudService.paySolicitud(vm.user, vm.solicitud)
+						];
+
+						Promise.all(promises)
+							.then(function(result){
+								$state.go('terminado');
+
+								UIService.hideLoadingScreen();
+							});
 					}
 				}
 
-				function _locateSites(points){
-					if (!points || !lodash.isArray(points) || !vm.map) {
-						return;
-					}
+				function cancelarTrabajo(){
+					let terminado = confirm('Deseas cancelar el trabajo? (Recuerda que puede generar algun cobro)');
+					if (terminado) {
+						UIService.showLoadingScreen('Cancelando el trabajo');
 
-					// first we clear all the points on the map
-					lodash.forEach(vm.markers, function(site) {
-						site.setMap( null );
-					});
-					vm.markers = [];
+						let promises = [
+							SolicitudService.cancelSolicitud(vm.user, vm.solicitud)
+						];
 
-					// then paint the new points on the map
-					var newMarkers = angular.copy(points);
-					if (lodash.isArray( newMarkers ) && newMarkers.length > 0) {
-						newMarkers.forEach(function(point, index){
-							vm.markers.push(
-								GoogleMapsService.setMarker(
-									vm.map,
-									parseFloat(point.latitude),
-									parseFloat(point.longitude),
-									index
-								)
-							);
-						});
+						Promise.all(promises)
+							.then(function(result){
+								$state.go('home');
 
-						GoogleMapsService.centerMap(vm.map, vm.markers);
-					} else {
-						GoogleMapsService.centerMap(vm.map);
+								let cancelacion = result;
+
+								alert('Trabajo cancelado exitosamente!. ' + (cancelacion.cancelPenalty ? `Se te han cobrado $ ${cancelacion.cancelFee}` : ''));
+
+								UIService.hideLoadingScreen();
+							});
 					}
 				}
 			};

@@ -34,7 +34,7 @@ define([], function() {
 					controllerAs: 'hc'
 				})
 				.state('estado', {
-					url: '/estado',
+					url: '/estado/{serviceId}',
 					templateUrl: 'app/screens/estado/html/estado.html',
 					controller: 'EstadoController',
 					controllerAs: 'ec'

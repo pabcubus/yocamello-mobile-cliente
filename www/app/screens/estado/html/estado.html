@@ -5,13 +5,9 @@
 		</div>
 		<div class="estado-card-wrapper">
 			<div class="estado-card-text">
-				{{estado.estado.nombre}}
+				{{estado.description}}
 			</div>
-			<div class="estado-card-map" ng-if="estado.estado.id == 3">
-				<div class="estado-card-map-wrapper" id="estado-card-map-wrapper">
-				</div>
-			</div>
-			<div class="estado-card-finish" ng-show="estado.estado.id == 4" layout="row">
+			<div class="estado-card-finish" ng-show="estado.status == 'OP'" layout="row">
 				<md-button
 					flex
 					ng-click="ec.terminarTrabajo()"
@@ -21,4 +17,11 @@
 			</div>
 		</div>
 	</div>
+	<md-button
+		ng-show="ec.solicitud.estados.length > 0"
+		flex="nogrow"
+		ng-click="ec.cancelarTrabajo()"
+		class="md-raised md-warn">
+		Cancelar Trabajo
+	</md-button>
 </div>

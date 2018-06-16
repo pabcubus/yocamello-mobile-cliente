@@ -17,7 +17,7 @@
 			</a>
 			<md-menu-content width="4">
 				<md-menu-item ng-repeat="subitem in menu.serviceTypeList">
-					<md-button ng-click="hc.selectOption()">
+					<md-button ng-click="hc.selectOption(subitem)">
 						{{subitem.name}}
 					</md-button>
 				</md-menu-item>
@@ -25,8 +25,13 @@
 		</md-menu>
 	</div>
 
+	<button type="button" name="button"
+			ng-click="hc.acceptarTest()">
+		Ir a Estados
+	</button>
+
 	<trabajador
 		trabajador="hc.currentTrabajador"
-		on-accept="hc.acceptTrabajador()">
+		on-accept="hc.acceptSolicitud()">
 	</trabajador>
 </div>

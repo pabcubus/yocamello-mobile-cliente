@@ -96,7 +96,7 @@
 				function registerUser(user){
 					var deferred	= $q.defer();
 
-					DataService.performOperation('/rest/users/client', 'POST', user)
+					DataService.performOperation(null, '/rest/users/client', 'POST', user)
 						.then(function(result){
 							deferred.resolve(result.data);
 						})
