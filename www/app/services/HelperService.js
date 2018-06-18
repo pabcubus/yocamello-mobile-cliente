@@ -140,6 +140,9 @@
 					isAdBlocking: function(){
 						var obj = document.getElementById("tester");
 						return obj == undefined;
+					},
+					validateError(error){
+						return !lodash.has(error, 'message') ? 'No se puede completar la operacion. Intente mas tarde.' : error.message;
 					}
 				};
 

@@ -19,7 +19,8 @@
 
 					let httpData 	= {
 						'method': (operation ? operation : 'GET'),
-						'url': apiurl + url
+						'url': apiurl + url,
+						'timeout': 20000
 					};
 
 					if (lodash.isObject(data)) {

@@ -3,12 +3,12 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$q', 'lodash', 'DataService'];
+			var ngDependencies = ['$q', 'lodash', 'DataService', 'HelperService'];
 
-			var MenuService = function($q, lodash, DataService) {
+			var MenuService = function($q, lodash, DataService, HelperService) {
 				var vm = this;
 
-				vm.getMenuOptions = getMenuOptions;
+				vm.getMenuOptions	= getMenuOptions;
 
 				function getMenuOptions(){
 					var deferred	= $q.defer();
@@ -19,8 +19,7 @@
 						})
 						.catch(function(error){
 							deferred.reject({
-								code: '01',
-								message: 'Error al obtener las categorias disponibles. Intenta mas tarde.'
+								message: HelperService.validation.validateError(error)
 							});
 						});
 

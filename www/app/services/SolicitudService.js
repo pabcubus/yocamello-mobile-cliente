@@ -218,7 +218,7 @@
 						})
 						.catch((err) => {
 							return {
-								message: 'No se pudo encontrar un trabajador disponible. Intente mas tarde.'
+								message: HelperService.validation.validateError(err)
 							};
 						});
 				};
@@ -240,7 +240,7 @@
 						})
 						.catch((err) => {
 							return {
-								message: 'No se pudo encontrar un trabajador disponible. Intente mas tarde.'
+								message: HelperService.validation.validateError(err)
 							};
 						});
 				};
@@ -254,7 +254,7 @@
 						})
 						.catch((err) => {
 							return {
-								message: 'No se pudo encontrar un trabajador disponible. Intente mas tarde.'
+								message: HelperService.validation.validateError(err)
 							};
 						});
 				};
@@ -268,7 +268,7 @@
 						})
 						.catch((err) => {
 							return {
-								message: 'No se pudo encontrar un trabajador disponible. Intente mas tarde.'
+								message: HelperService.validation.validateError(err)
 							};
 						});
 				};
@@ -282,7 +282,7 @@
 						})
 						.catch((err) => {
 							return {
-								message: 'No se pudo encontrar un trabajador disponible. Intente mas tarde.'
+								message: HelperService.validation.validateError(err)
 							};
 						});
 				};
@@ -298,7 +298,7 @@
 						})
 						.catch((err) => {
 							return {
-								message: 'No se pudo encontrar un trabajador disponible. Intente mas tarde.'
+								message: HelperService.validation.validateError(err)
 							};
 						});
 				};

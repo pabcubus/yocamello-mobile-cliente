@@ -26,9 +26,13 @@
 						stars: 4
 					};
 
-					MenuService.getMenuOptions().then(function(result){
-						vm.menuOptions = result;
-					});
+					MenuService.getMenuOptions()
+						.then(function(result){
+							vm.menuOptions = result;
+						})
+						.catch(function(error){
+							alert(error.message);
+						});
 				}
 
 				function openMenu($mdMenu, ev) {
