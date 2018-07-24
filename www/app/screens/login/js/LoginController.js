@@ -6,10 +6,11 @@
 			var ngDependencies = ['SessionService', '$rootScope', '$state'];
 
 			var LoginController = function(SessionService, $rootScope, $state) {
-				let vm = this;
+				let vm 				= this;
 
-				vm.login	= login;
-				vm.user		= {
+				vm.login			= login;
+				vm.retornarPassword	= retornarPassword;
+				vm.user				= {
 					username: '',
 					password: ''
 				};
@@ -26,6 +27,20 @@
 						.catch(function(err){
 							alert(err.message);
 						});
+				}
+
+				function retornarPassword() {
+					var user = prompt("Ingresa tu usuario");
+					if (user != null) {
+						SessionService.retornarPassword(user)
+							.then(function(result){
+								alert(result.message || 'Revisa tu correo.');
+							})
+							.catch(function(err){
+								console.log(err);
+								alert(err.message || 'Ocurrio un error. Intente mas tarde.');
+							})
+					}
 				}
 			};
 

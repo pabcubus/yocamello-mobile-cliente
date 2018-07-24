@@ -1,5 +1,5 @@
 <div flex layout="column" class="perfil">
-	<md-card md-theme="default" md-theme-watch>
+	<md-card flex="noshrink" md-theme="default" md-theme-watch>
 		<md-card-title>
 			<md-card-title-text>
 				<span class="md-headline">{{pc.user.name + ' ' + pc.user.lastname}}</span>
@@ -11,7 +11,33 @@
 			</md-card-title-media>
 		</md-card-title>
 	</md-card>
-	<md-card class="perfil-info" md-theme="default" md-theme-watch>
+
+	<md-card flex="noshrink" class="pic-selector" md-theme="default" md-theme-watch>
+		<div layout="row">
+			<div flex="40" layout="row">
+				<input ngf-select class="ng-hide" id="input-file-id" type="file" ng-model="pc.imageFile"/>
+				<label for="input-file-id" class="md-button md-raised md-primary" flex>Escoger</label>
+			</div>
+			<div flex="40" layout="row">
+				<md-button flex class="md-raised md-primary" ng-click="pc.uploadImage()">Cambiar</md-button>
+			</div>
+			<div flex="20" layout="row">
+				<md-button flex class="md-raised md-primary">
+					<md-icon
+						class="material-icons">
+						close
+					</md-icon>
+				</md-button>
+			</div>
+		</div>
+
+		<div layout="column" class="img-cropper" flex="noshrink">
+			<ui-cropper image="pc.imageFile" area-type="square" result-image="pc.imageCropped" flex></ui-cropper>
+		</div>
+
+	</md-card>
+
+	<md-card flex="noshrink" class="perfil-info" md-theme="default" md-theme-watch>
 		<md-input-container>
 			<label>Email</label>
 			<input ng-model="pc.user.email">

@@ -14,6 +14,8 @@
 				'jkAngularRatingStars',
 				'zSchema',
 				'jsSHA',
+				'uiCropper',
+				'ngFileUpload',
 
 				// Services
 				'app/services/DataService',
@@ -61,6 +63,8 @@
 				jkAngularRatingStars,
 				zSchema,
 				jsSHA,
+				uiCropper,
+				ngFileUpload,
 
 				// Services
 				DataService,
@@ -94,7 +98,17 @@
 				runConfig,
 				routesConfig
 			) {
-				ng.module('yocamello', ['ngMaterial', 'ui.router', 'angular-md5', 'ngLodash', 'jkAngularRatingStars'])
+				ng.module('yocamello',
+						[
+							'ngMaterial',
+							'ui.router',
+							'angular-md5',
+							'ngLodash',
+							'jkAngularRatingStars',
+							'uiCropper',
+							'ngFileUpload'
+						]
+					)
 					// Services
 					.service(DataService.registeredName, DataService)
 					.service(HelperService.registeredName, HelperService)

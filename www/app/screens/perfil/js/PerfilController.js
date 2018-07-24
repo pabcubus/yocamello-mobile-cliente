@@ -8,7 +8,22 @@
 			var PerfilController = function($scope, SessionService) {
 				var vm	= this;
 
-				vm.user = {};
+				vm.imageFile		= '';
+				vm.imageCropped 	= '';
+				vm.user 			= {};
+
+				vm.uploadImage		= uploadImage;
+
+				function uploadImage(){
+					let imgString = vm.imageCropped.split(',')[1];
+					SessionService.changeAvatar(imgString)
+						.then(result => {
+							alert('imagen cambiada');
+						})
+						.catch(err => {
+							alert('hubo un error...');
+						})
+				}
 
 				$scope.$on('$viewContentLoaded', function(event){
 					vm.user = SessionService.getUser();

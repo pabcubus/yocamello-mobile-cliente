@@ -20,35 +20,23 @@
 		<div class="servicio-info" layout="column">
 			<div layout="row">
 				<div flex>
-					{{servicio.servicio.name}}
+					{{servicio.service.name}}
 				</div>
 				<div flex>
-					$ 5.000 COP
+					{{servicio.service.baseRate | currency : "$ " : 0}}
 				</div>
 			</div>
 			<div layout="row">
 				<div flex>
-					<div class="servicio-estado" ng-class="servicio.estado.name == 'Finalizado' ? 'finalizado' : 'else'">
-						{{servicio.estado.name}}
+					<div class="servicio-estado" ng-class="servicio.status == 'OK' ? 'finalizado' : 'else'">
+						Completado
 					</div>
 				</div>
 				<div flex>
-					{{servicio.ultima_act}}
+					{{servicio.requestDate | date}}
 				</div>
 			</div>
 		</div>
 
-		<!--
-
-		<div class="servicio-title">
-			<strong>
-				Servicio:
-			</strong>
-			{{servicio.servicio.name}}
-		</div>
-		<div class="servicio-estado" ng-class="servicio.estado.name == 'Finalizado' ? 'finalizado' : 'else'">
-			{{servicio.estado.name}}
-		</div>
-	-->
 	</md-whiteframe>
 </div>

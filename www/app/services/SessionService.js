@@ -18,6 +18,8 @@
 				vm.login			= login;
 				vm.logout			= logout;
 				vm.getUser			= getUser;
+				vm.retornarPassword	= retornarPassword;
+				vm.changeAvatar		= changeAvatar;
 
 				_checkUser();
 
@@ -105,6 +107,39 @@
 								code: '01',
 								message: 'Error al registrarte. Intenta mas tarde.'
 							});
+						});
+
+					return deferred.promise;
+				}
+
+				function retornarPassword(user){
+					let deferred	= $q.defer();
+
+					DataService.performOperation(false, '/rest/recoverypass', 'POST', {
+							"username": user
+						})
+						.then(function(result){
+							deferred.resolve(result.data);
+						})
+						.catch(function(err){
+							deferred.reject(err.data);
+						});
+
+					return deferred.promise;
+				}
+
+				function changeAvatar(imgString){
+					let deferred	= $q.defer();
+
+					DataService.performOperation(false, '/users/' + vm.user.id + '/avatar', 'PUT', {
+							"mimeType": "image/jpeg",
+							"contents": imgString
+						})
+						.then(function(result){
+							deferred.resolve(result.data);
+						})
+						.catch(function(err){
+							deferred.reject(err.data);
 						});
 
 					return deferred.promise;

@@ -28,114 +28,18 @@
 					return vm.currentSolicitud;
 				}
 
-				function getServicesAvailable() {
-					let services = [
-						{
-							id: 1,
-							ultima_act: '2017-08-12 11:20:00',
-							estado: {
-								id: 4,
-								name: 'Finalizado'
-							},
-							trabajador: {
-								name: 'Jorge Perez',
-								stars: 4
-							},
-							servicio: {
-								id: 2,
-								name: 'Lavandería'
-							},
-							estados: [
-								{
-									id: 1,
-									date: '2017-08-12 11:15:00',
-									estado: {
-										id: 1,
-										nombre: 'Confirmado'
-									}
-								},
-								{
-									id: 2,
-									date: '2017-08-12 11:20:00',
-									estado: {
-										id: 2,
-										nombre: 'En Alistamiento'
-									}
-								},
-								{
-									id: 3,
-									date: '2017-08-12 11:20:00',
-									estado: {
-										id: 3,
-										nombre: 'En Camino'
-									}
-								},
-								{
-									id: 4,
-									date: '2017-08-12 11:20:00',
-									estado: {
-										id: 4,
-										nombre: 'Finalizado'
-									}
-								}
-							]
-						},
-						{
-							id: 2,
-							ultima_act: '2017-08-12 11:20:00',
-							estado: {
-								id: 3,
-								name: 'En Camino'
-							},
-							trabajador: {
-								name: 'Jorge Perez',
-								stars: 4
-							},
-							servicio: {
-								id: 1,
-								name: 'Carpintería'
-							},
-							estados: [
-								{
-									id: 1,
-									date: '2017-08-12 11:15:00',
-									estado: {
-										id: 1,
-										nombre: 'Confirmado'
-									}
-								},
-								{
-									id: 2,
-									date: '2017-08-12 11:20:00',
-									estado: {
-										id: 2,
-										nombre: 'En Alistamiento'
-									}
-								},
-								{
-									id: 3,
-									date: '2017-08-12 11:20:00',
-									estado: {
-										id: 3,
-										nombre: 'En Camino'
-									}
-								}
-							]
-						}
-					]
-
+				function getServicesAvailable(user) {
 					let deferred = $q.defer();
 
-					lodash.forEach(services, function(service){
-						service.ultima_act	= moment(service.ultima_act).format('ll');
-						service.mapUrl 		= GoogleMapsService.createStaticMap([
-							{coordinates: '11.006459,-74.823036'}
-						], 500, 200);
-					});
+					let token = HelperService.storage.get(HelperService.constants.LOCALSTORAGE_TOKEN_TAG);
 
-					$timeout(function(){
-						deferred.resolve(services);
-					}, 2000);
+					DataService.performOperation(token, '/rest/users/'+user.id+'/services?skip=0&limit=100', 'GET')
+						.then(function(result){
+							deferred.resolve(result.data);
+						})
+						.catch(function(err){
+							deferred.reject(err);
+						});
 
 					return deferred.promise;
 				};

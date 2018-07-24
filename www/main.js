@@ -17,7 +17,9 @@
 			'angular-material':			'bower_components/angular-material/angular-material.min',
 			'jkAngularRatingStars':		'bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min',
 			'zSchema':					'bower_components/z-schema/dist/ZSchema-browser-min',
-			'jsSHA':					'bower_components/jsSHA/src/sha'
+			'jsSHA':					'bower_components/jsSHA/src/sha',
+			'uiCropper':				'bower_components/ui-cropper/compile/minified/ui-cropper',
+			'ngFileUpload':				'bower_components/ng-file-upload/ng-file-upload.min'
 		},
 
 		shim: {
@@ -34,7 +36,9 @@
 			'angular-material':			{ exports: 'angular-material', deps: ['angular'] },
 			'jkAngularRatingStars':		{ exports: 'jkAngularRatingStars', deps: ['angular'] },
 			'zSchema':					{ exports: 'zSchema', deps: ['angular'] },
-			'jsSHA':					{ exports: 'jsSHA', deps: ['angular'] }
+			'jsSHA':					{ exports: 'jsSHA', deps: ['angular'] },
+			'uiCropper':				{ exports: 'uiCropper', deps: ['angular'] },
+			'ngFileUpload':				{ exports: 'ngFileUpload', deps: ['angular'] }
 		},
 
 		waitSeconds: 15,
