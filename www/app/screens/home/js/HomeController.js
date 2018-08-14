@@ -16,8 +16,7 @@
 				vm.acceptarTest			= acceptarTest;
 
 				vm.currentTrabajador	= {};
-				vm.currentSolicitud		= {};
-				vm.hasSolicitud			= false;
+				vm.currentSolicitud		= null;
 
 				$scope.$on('$viewContentLoaded', function(event){
 					onInit();
@@ -31,13 +30,9 @@
 						stars: 4
 					};
 
-					SolicitudService.getServicesAvailable(user)
-						.then((servicios) => {
-							let servs = servicios.filter((item) => item.status == 'AS' || item.status == 'OP' || item.status == 'PN');
-
-							vm.hasSolicitud	= (servs.length > 0 ? true : false);
-
-							//filtrar status por 'AS', 'OP', 'PN'
+					SolicitudService.getServicesAvailable(user, ['RQ','PA','AS','OP','EN'])
+						.then(servicios => {
+							vm.currentSolicitud	= servicios.length > 0 ? servicios[0] : null;
 						})
 						.catch((err) => {
 							console.log(err);

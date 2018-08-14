@@ -1,11 +1,11 @@
 <div flex layout="column" class="home">
-	<md-button class="md-raised md-warn" ng-show="hc.hasSolicitud">
+	<a class="md-button md-raised md-warn" ng-show="hc.currentSolicitud" ui-sref="estado({ serviceId: hc.currentSolicitud.id })">
 		<md-icon
 			class="material-icons">
 			warning
 		</md-icon>
 		Trabajo Pendiente!
-	</md-button>
+	</a>
 
 	<div flex layout="column" class="home-links">
 		<h3 class="home-title">

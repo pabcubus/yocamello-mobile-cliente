@@ -13,12 +13,12 @@
 		layout-margin
 		layout-padding>
 
-		<div class="servicio-location">
+		<!-- <div class="servicio-location">
 			<img src="{{servicio.mapUrl}}"/>
-		</div>
+		</div> -->
 
 		<div class="servicio-info" layout="column">
-			<div layout="row">
+			<div layout="row" class="servicio-info-lengend">
 				<div flex>
 					{{servicio.service.name}}
 				</div>
@@ -26,10 +26,13 @@
 					{{servicio.service.baseRate | currency : "$ " : 0}}
 				</div>
 			</div>
+			<div layout="column" flex="nogrow" class="servicio-info-map" ng-show="servicio.mapUrl">
+				<img flex src="{{servicio.mapUrl}}"/>
+			</div>
 			<div layout="row">
 				<div flex>
 					<div class="servicio-estado" ng-class="servicio.status == 'OK' ? 'finalizado' : 'else'">
-						Completado
+						{{servicio.statusDescription}}
 					</div>
 				</div>
 				<div flex>

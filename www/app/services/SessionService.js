@@ -61,18 +61,18 @@
 
 									deferred.resolve(vm.user);
 								})
-								.catch(function(error){
+								.catch(function(err){
 									vm.logout();
 									deferred.reject({
 										code: '01',
-										message: 'Usuario no encontrado'
+										message: err.data.message || 'Usuario no encontrado'
 									});
 								});
 						})
-						.catch(function(error){
+						.catch(function(err){
 							deferred.reject({
 								code: '01',
-								message: 'Error al loguearte. Intenta mas tarde.'
+								message: err.data.message || 'Error al loguearte. Intenta mas tarde.'
 							});
 						});
 

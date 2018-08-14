@@ -15,9 +15,18 @@
 
 					let user = SessionService.getUser();
 
-					SolicitudService.getServicesAvailable(user)
+					SolicitudService.getServicesAvailable(user, ['OK','AS'])
 						.then(function(servicios){
-							vm.servicios = servicios.filter(serv => serv.status == 'OK');
+							vm.servicios = servicios;
+							
+							setTimeout(() => {
+								let card = document.getElementsByClassName('servicio-info-lengend')[0];
+
+								vm.servicios.forEach(servicio => {
+									servicio.mapUrl = `https://maps.googleapis.com/maps/api/staticmap?&zoom=15&size=${card.offsetWidth}x150&maptype=roadmap&markers=color:red%7Clabel:F%7C${servicio.service.lat},${servicio.service.lng}&key=AIzaSyDQ-rRq16rEIUX7-dOk5UBM0eEIwJEGDTk`;
+								});
+							}, 200);
+
 						})
 						.catch(function(){
 						})

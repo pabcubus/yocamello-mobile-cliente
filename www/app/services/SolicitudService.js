@@ -30,12 +30,19 @@
 					return vm.currentSolicitud;
 				}
 
-				function getServicesAvailable(user) {
-					let deferred = $q.defer();
+				function getServicesAvailable(user, statuses) {
+					let deferred		= $q.defer();
+					let token			= HelperService.storage.get(HelperService.constants.LOCALSTORAGE_TOKEN_TAG);
+					let statusFilter	= '';
 
-					let token = HelperService.storage.get(HelperService.constants.LOCALSTORAGE_TOKEN_TAG);
+					if (
+						lodash.isArray(statuses) &&
+						statuses.length > 0 &&
+						(statuses.filter(status => (!lodash.isString(status) || status.length <= 0))).length == 0){
+						statusFilter = ('&status=' + statuses.join('&status='));
+					}
 
-					DataService.performOperation(token, '/rest/users/'+user.id+'/services?skip=0&limit=100', 'GET')
+					DataService.performOperation(token, `/rest/users/${user.id}/services?skip=0&limit=10${statusFilter}`, 'GET')
 						.then(function(result){
 							deferred.resolve(result.data);
 						})
