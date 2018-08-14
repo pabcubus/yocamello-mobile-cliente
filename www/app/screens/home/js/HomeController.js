@@ -17,14 +17,31 @@
 
 				vm.currentTrabajador	= {};
 				vm.currentSolicitud		= {};
+				vm.hasSolicitud			= false;
 
-				onInit();
+				$scope.$on('$viewContentLoaded', function(event){
+					onInit();
+				});
 
-				function onInit(){
+				function onInit() {
+					let user = SessionService.getUser();
+
 					vm.currentTrabajador	= {
 						name: 'Pablo Bassil',
 						stars: 4
 					};
+
+					SolicitudService.getServicesAvailable(user)
+						.then((servicios) => {
+							let servs = servicios.filter((item) => item.status == 'AS' || item.status == 'OP' || item.status == 'PN');
+
+							vm.hasSolicitud	= (servs.length > 0 ? true : false);
+
+							//filtrar status por 'AS', 'OP', 'PN'
+						})
+						.catch((err) => {
+							console.log(err);
+						});
 
 					MenuService.getMenuOptions()
 						.then(function(result){
@@ -44,44 +61,52 @@
 
 					let user = SessionService.getUser();
 
-					if (!created) {
-						SolicitudService.requestSolicitud(user, servicio, 10.936224, -74.794044).then((serviceResponse) => {
-							vm.currentSolicitud = serviceResponse;
+					SolicitudService.requestSolicitud(user, servicio, 10.936224, -74.794044).then((serviceResponse) => {
+						vm.currentSolicitud = serviceResponse;
 
-							switch (vm.currentSolicitud.serviceStatus) {
-								case 'PA':
-									SolicitudService.checkSolicitud(user, vm.currentSolicitud, true).then((checkResponse) => {
-										vm.currentSolicitud = checkResponse;
+						switch (vm.currentSolicitud.serviceStatus) {
+							case 'PA':
+								SolicitudService.checkSolicitud(user, vm.currentSolicitud, true).then((checkResponse) => {
+									vm.currentSolicitud = checkResponse;
 
-										if (vm.currentSolicitud.serviceStatus == 'AS') {
+									if (vm.currentSolicitud.serviceStatus == 'AS') {
+										UIService.hideLoadingScreen();
+										setTimeout(() => {
 											_workerSeleccionado(vm.currentSolicitud.workerName, vm.currentSolicitud.workerRating);
-										} else {
+										}, 300);
+									} else {
+										UIService.hideLoadingScreen();
+										SolicitudService.notAssignedSolicitud(vm.currentSolicitud).then(() => {
 											alert('No se pudo encontrar un trabajador disponible. Intente mas tarde.');
-										}
-									});
-									break;
-								case 'RQ':
-									SolicitudService.assignSolicitud(user, vm.currentSolicitud).then((checkResponse) => {
-										vm.currentSolicitud = checkResponse;
+										});
+									}
+								});
+								break;
+							case 'RQ':
+								SolicitudService.assignSolicitud(user, vm.currentSolicitud).then((checkResponse) => {
+									vm.currentSolicitud = checkResponse;
 
-										if (vm.currentSolicitud.serviceStatus == 'AS') {
+									if (vm.currentSolicitud.serviceStatus == 'AS') {
+										UIService.hideLoadingScreen();
+										setTimeout(() => {
 											_workerSeleccionado(vm.currentSolicitud.workerName, vm.currentSolicitud.workerRating);
-										} else {
+										}, 300);
+										//_workerSeleccionado(vm.currentSolicitud.workerName, vm.currentSolicitud.workerRating);
+									} else {
+										UIService.hideLoadingScreen();
+										SolicitudService.notAssignedSolicitud(vm.currentSolicitud).then(() => {
 											alert('No se pudo encontrar un trabajador disponible. Intente mas tarde.');
-										}
-									});
-									break;
-							}
-						})
-						.catch(function(err){
-							alert(err.message);
-						})
-						.finally(function(){
-							UIService.hideLoadingScreen();
-						});
-					} else {
-
-					}
+										});
+									}
+								});
+								break;
+						}
+					})
+					.catch(function(err){
+						alert(err.message || 'Hubo un error. Intenta mas tarde.');
+						UIService.hideLoadingScreen();
+					})
+					.finally();
 				};
 
 				function _workerSeleccionado(name, stars){

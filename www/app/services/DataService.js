@@ -33,11 +33,15 @@
 						};
 					}
 
-					$http(httpData).then(function successCallback(response) {
-						deferred.resolve(response);
-					}, function errorCallback(error) {
-						deferred.reject(error);
-					});
+					var operation = $http(httpData);
+
+					operation
+						.then((response, status, headers) => {
+							var test = response.headers('location');
+							deferred.resolve(response);
+						}, function errorCallback(error) {
+							deferred.reject(error);
+						});
 
 					return deferred.promise;
 				}

@@ -98,7 +98,7 @@
 				function registerUser(user){
 					var deferred	= $q.defer();
 
-					DataService.performOperation(null, '/rest/users/client', 'POST', user)
+					DataService.performOperation(false, '/rest/users/client', 'POST', user)
 						.then(function(result){
 							deferred.resolve(result.data);
 						})
@@ -131,11 +131,13 @@
 				function changeAvatar(imgString){
 					let deferred	= $q.defer();
 
-					DataService.performOperation(false, '/users/' + vm.user.id + '/avatar', 'PUT', {
+					DataService.performOperation(true, '/rest/users/' + vm.user.id + '/avatar', 'PUT', {
 							"mimeType": "image/jpeg",
 							"contents": imgString
 						})
 						.then(function(result){
+							let d = new Date();
+							vm.user.uavatar.url = result.data.location + '?t=' + d.getTime();
 							deferred.resolve(result.data);
 						})
 						.catch(function(err){

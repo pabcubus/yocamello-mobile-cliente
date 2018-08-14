@@ -1,18 +1,19 @@
 <div flex layout="column" class="perfil">
-	<md-card flex="noshrink" md-theme="default" md-theme-watch>
-		<md-card-title>
-			<md-card-title-text>
+	<md-card flex="noshrink" class="perfil-first" md-theme="default" md-theme-watch>
+		<md-card-title flex="row">
+			<div flex="70">
 				<span class="md-headline">{{pc.user.name + ' ' + pc.user.lastname}}</span>
-			</md-card-title-text>
-			<md-card-title-media>
-				<div class="md-media-xl card-media">
-					<img src="app/images/user.jpg" alt="">
-				</div>
-			</md-card-title-media>
+			</div>
+			<div flex="30">
+				<img
+					ng-src="{{pc.user.uavatar.url}}"
+					class="perfil-avatar"
+					ng-click="pc.avatarMode = !pc.avatarMode">
+			</div>
 		</md-card-title>
 	</md-card>
 
-	<md-card flex="noshrink" class="pic-selector" md-theme="default" md-theme-watch>
+	<md-card flex="noshrink" class="pic-selector" md-theme="default" md-theme-watch ng-show="pc.avatarMode">
 		<div layout="row">
 			<div flex="40" layout="row">
 				<input ngf-select class="ng-hide" id="input-file-id" type="file" ng-model="pc.imageFile"/>
@@ -22,7 +23,7 @@
 				<md-button flex class="md-raised md-primary" ng-click="pc.uploadImage()">Cambiar</md-button>
 			</div>
 			<div flex="20" layout="row">
-				<md-button flex class="md-raised md-primary">
+				<md-button flex class="md-raised md-primary" ng-click="pc.avatarMode = !pc.avatarMode">
 					<md-icon
 						class="material-icons">
 						close
@@ -32,7 +33,13 @@
 		</div>
 
 		<div layout="column" class="img-cropper" flex="noshrink">
-			<ui-cropper image="pc.imageFile" area-type="square" result-image="pc.imageCropped" flex></ui-cropper>
+			<ui-cropper
+				image="pc.imageFile"
+				area-type="square"
+				result-image="pc.imageCropped"
+				result-image-size="{w: 400, h: 400}"
+				flex>
+			</ui-cropper>
 		</div>
 
 	</md-card>

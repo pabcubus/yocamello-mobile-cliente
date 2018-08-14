@@ -21,6 +21,7 @@
 
 								$mdDialog.show(
 									{
+										multiple: true,
 										contentElement: '#loadingDlg',
 										parent: angular.element(document.body),
 										clickOutsideToClose: false

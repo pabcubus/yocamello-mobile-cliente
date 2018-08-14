@@ -42,6 +42,7 @@
 					if (terminado) {
 						UIService.showLoadingScreen('Terminando el trabajo');
 
+						/*
 						let promises = [
 							SolicitudService.doneSolicitud(vm.user, vm.solicitud),
 							SolicitudService.paySolicitud(vm.user, vm.solicitud)
@@ -53,6 +54,21 @@
 
 								UIService.hideLoadingScreen();
 							});
+						*/
+
+						SolicitudService.doneSolicitud(vm.user, vm.solicitud).then((result1) => {
+							SolicitudService.paySolicitud(vm.user, vm.solicitud).then((result2) => {
+								$state.go('terminado');
+								UIService.hideLoadingScreen();
+							})
+							.catch((err) => {
+								alert(lodash.has(err.message) ? err.message : 'Hubo un error. Favor contactar con la empresa.');
+							});
+						})
+						.catch((err) => {
+							alert(lodash.has(err.message) ? err.message : 'Hubo un error. Favor contactar con la empresa.');
+						});
+
 					}
 				}
 

@@ -10,15 +10,12 @@
 
 				vm.password2	= '';
 				vm.user 		= {
+					"identification": "72345254",
 					"genre": "M",
 					"lang": "ES",
 					"active": true,
 					"creationDate": "2017-08-20T19:15:00",
-					"usecurity": {
-						"secretQuestion": "¿Cuál es su color favorito?",
-						"secretAnswer": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-						"groupRole": "CLIENT"
-					}
+					"usecurity": {}
 				};
 
 				vm.registrar	= registrar;
@@ -32,7 +29,8 @@
 					shaObj.update(vm.user.usecurity.password);
 					let newPass = shaObj.getHash("HEX");
 
-					vm.user.birthDate			= moment(vm.user.birthDate).format('YYYY-MM-DD');
+					vm.user.birthDate			= moment().format('YYYY-MM-DD');
+					vm.user.creationDate		= moment().format('YYYY-MM-DDTHH:mm:ss');
 					vm.user.usecurity.password 	= newPass;
 					vm.user.usecurity.email 	= vm.user.email;
 

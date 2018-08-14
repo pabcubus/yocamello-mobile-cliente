@@ -10,6 +10,7 @@
 
 				vm.imageFile		= '';
 				vm.imageCropped 	= '';
+				vm.avatarMode		= false;
 				vm.user 			= {};
 
 				vm.uploadImage		= uploadImage;
@@ -18,6 +19,7 @@
 					let imgString = vm.imageCropped.split(',')[1];
 					SessionService.changeAvatar(imgString)
 						.then(result => {
+							vm.avatarMode = false;
 							alert('imagen cambiada');
 						})
 						.catch(err => {
@@ -26,7 +28,10 @@
 				}
 
 				$scope.$on('$viewContentLoaded', function(event){
-					vm.user = SessionService.getUser();
+					let d 				= new Date();
+
+					vm.user 			= SessionService.getUser();
+					vm.user.uavatar.url = vm.user.uavatar.url + '?t=' + d.getTime();
 				});
 			};
 
