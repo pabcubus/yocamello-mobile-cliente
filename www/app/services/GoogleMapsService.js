@@ -3,11 +3,14 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['lodash'];
+			var ngDependencies = ['lodash', '$q'];
 
-			var GoogleMapsService = function(lodash) {
+			var GoogleMapsService = function(lodash, $q) {
 				var vm = this;
 
+				vm.coordinates		= null;
+				vm.getCoordinates	= getCoordinates;
+				vm.setCoordinates	= setCoordinates;
 				vm.createStaticMap	= createStaticMap;
 				vm.createMap 		= createMap;
 				vm.setMarker 		= setMarker;
@@ -17,18 +20,50 @@
 
 				vm.markerType = {
 					site: {
-						url: 'app/images/map-marker.png',
-						size: new google.maps.Size(39, 39),
-						origin: new google.maps.Point(0, 0),
-						anchor: new google.maps.Point(17, 32)
+						url:	'app/images/map-marker.png',
+						size:	new google.maps.Size(39, 39),
+						origin:	new google.maps.Point(0, 0),
+						anchor:	new google.maps.Point(17, 32)
 					},
 					site_bad: {
-						url: 'app/images/map-marker-red.png',
-						size: new google.maps.Size(39, 39),
-						origin: new google.maps.Point(0, 0),
-						anchor: new google.maps.Point(17, 32)
+						url:	'app/images/map-marker-red.png',
+						size:	new google.maps.Size(39, 39),
+						origin:	new google.maps.Point(0, 0),
+						anchor:	new google.maps.Point(17, 32)
 					}
 				};
+
+				function getCoordinates() {
+					let defer = $q.defer();
+
+					if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(
+							function(pos) {
+								let coords = {
+									lat: pos.coords.latitude,
+									lng: pos.coords.longitude
+								};
+
+								vm.setCoordinates(coords);
+
+								defer.resolve(coords);
+							},
+							function(err) {
+								defer.reject({
+									status: 1,
+									message: 'Error consiguiendo las coordenadas. Debes habilitar el la función del GPS.'
+								});
+								vm.setCoordinates(null);
+							}
+						);
+					}
+
+					return defer.promise;
+				}
+
+				function setCoordinates(coords){
+					vm.coordinates = coords;
+				}
 
 				function highlightMarker(marker) {
 					google.maps.event.trigger(marker, 'click');

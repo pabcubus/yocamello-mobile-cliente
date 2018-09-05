@@ -21,6 +21,7 @@
         <icon density="mdpi" src="res/icon/android/icon-48-mdpi.png" />
         <icon density="hdpi" src="res/icon/android/icon-72-hdpi.png" />
         <icon density="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
+        <preference name="android-minSdkVersion" value="21" />
         <preference name="Orientation" value="portrait" />
     </platform>
     <platform name="ios">

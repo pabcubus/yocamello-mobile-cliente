@@ -152,7 +152,7 @@
 				}
 
 				function _checkUser(){
-					vm.user			= HelperService.session.getUser();
+					vm.user			= HelperService.storage.get(HelperService.constants.LOCALSTORAGE_USER_TAG, true);
 
 					if (!SchemaService.validateUser(vm.user)){
 						HelperService.storage.remove(HelperService.constants.LOCALSTORAGE_USER_TAG);

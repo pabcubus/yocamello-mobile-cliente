@@ -10,10 +10,10 @@
 
 				vm.getMenuOptions	= getMenuOptions;
 
-				function getMenuOptions(){
+				function getMenuOptions(lat, lng){
 					var deferred	= $q.defer();
 
-					DataService.performOperation(true, '/rest/services/types/nearby?lat=10.936224&lng=-74.794044', 'GET')
+					DataService.performOperation(true, `/rest/services/types/nearby?lat=${lat}&lng=${lng}`, 'GET')
 						.then(function(result){
 							deferred.resolve(result.data);
 						})

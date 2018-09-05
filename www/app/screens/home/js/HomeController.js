@@ -3,13 +3,15 @@
 
 	define([],
 		function() {
-			var ngDependencies = ['$state', '$scope', '$timeout', 'MenuService', 'UIService', 'SolicitudService', 'SessionService'];
+			var ngDependencies = ['$state', 'lodash', '$scope', '$timeout', 'MenuService', 'UIService', 'SolicitudService', 'SessionService', 'GoogleMapsService'];
 
-			var HomeController = function($state, $scope, $timeout, MenuService, UIService, SolicitudService, SessionService) {
+			var HomeController = function($state, lodash, $scope, $timeout, MenuService, UIService, SolicitudService, SessionService, GoogleMapsService) {
 				var vm					= this;
 
 				vm.menuOptions			= [];
 
+				vm.coordinates			= null;
+				vm.gotCoordinates		= true;
 				vm.openMenu				= openMenu;
 				vm.selectOption			= selectOption;
 				vm.acceptSolicitud		= acceptSolicitud
@@ -19,26 +21,32 @@
 				vm.currentSolicitud		= null;
 
 				$scope.$on('$viewContentLoaded', function(event){
-					onInit();
+					GoogleMapsService.getCoordinates()
+						.then((coords) => {
+							vm.gotCoordinates = true;
+							_onInit(coords.lat, coords.lng);
+						})
+						.catch((err) => {
+							vm.gotCoordinates = false;
+							SolicitudService.getServicesAvailable(user, ['RQ','PA','AS','OP','EN'])
+								.then(servicios => {
+									vm.currentSolicitud	= servicios.length > 0 ? servicios[0] : null;
+								})
+								.catch();
+							alert.log(err.message);
+						});
 				});
 
-				function onInit() {
+				function _onInit(lat, lng) {
 					let user = SessionService.getUser();
-
-					vm.currentTrabajador	= {
-						name: 'Pablo Bassil',
-						stars: 4
-					};
 
 					SolicitudService.getServicesAvailable(user, ['RQ','PA','AS','OP','EN'])
 						.then(servicios => {
 							vm.currentSolicitud	= servicios.length > 0 ? servicios[0] : null;
 						})
-						.catch((err) => {
-							console.log(err);
-						});
+						.catch();
 
-					MenuService.getMenuOptions()
+					MenuService.getMenuOptions(lat, lng)
 						.then(function(result){
 							vm.menuOptions = result;
 						})
@@ -55,6 +63,12 @@
 					UIService.showLoadingScreen('Buscando...');
 
 					let user = SessionService.getUser();
+
+					if (!vm.coordinates) {
+						alert(err.message || 'Hubo un error. Intenta mas tarde.');
+						UIService.hideLoadingScreen();
+						return;
+					}
 
 					SolicitudService.requestSolicitud(user, servicio, 10.936224, -74.794044).then((serviceResponse) => {
 						vm.currentSolicitud = serviceResponse;

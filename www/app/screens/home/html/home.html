@@ -7,6 +7,14 @@
 		Trabajo Pendiente!
 	</a>
 
+	<a class="md-button md-raised md-warn" ng-hide="hc.gotCoordinates" ui-sref="estado({ serviceId: hc.currentSolicitud.id })">
+		<md-icon
+			class="material-icons">
+			autorenew
+		</md-icon>
+		Intenta de nuevo
+	</a>
+
 	<div flex layout="column" class="home-links">
 		<h3 class="home-title">
 			Que necesitas hoy?
