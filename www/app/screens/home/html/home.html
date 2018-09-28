@@ -1,5 +1,5 @@
 <div flex layout="column" class="home">
-	<a class="md-button md-raised md-warn" ng-show="hc.currentSolicitud" ui-sref="estado({ serviceId: hc.currentSolicitud.id })">
+	<a class="md-button md-raised md-warn" ng-show="hc.hasServiciosPendientes" ui-sref="estado({ serviceId: hc.currentSolicitud.id })">
 		<md-icon
 			class="material-icons">
 			warning
@@ -7,7 +7,11 @@
 		Trabajo Pendiente!
 	</a>
 
-	<a class="md-button md-raised md-warn" ng-hide="hc.gotCoordinates" ui-sref="estado({ serviceId: hc.currentSolicitud.id })">
+	<a
+		class="md-button md-raised md-warn"
+		ng-hide="hc.gotCoordinates"
+		ui-sref="estado({ serviceId: hc.currentSolicitud.id })"
+		ng-click="hc.getCoordinates()">
 		<md-icon
 			class="material-icons">
 			autorenew

@@ -124,8 +124,6 @@
 											vm.checkCalls++;
 
 											resolve(vm.checkSolicitud(user, serviceRequested, true));
-
-											//return vm.checkSolicitud(user, serviceRequested, true);
 										} else {
 											vm.checkCalls		= 0;
 											vm.currentSolicitud = result.data;
@@ -251,11 +249,11 @@
 						});
 				};
 
-				function cancelSolicitud(user, serviceRequested){
+				function cancelSolicitud(user, serviceRequested, reason){
 					let token = HelperService.storage.get(HelperService.constants.LOCALSTORAGE_TOKEN_TAG);
 
 					return DataService.performOperation(token, '/rest/services/' + serviceRequested.serviceId + '/cancel', 'POST', {
-						"cancelDetail": "Cancelacion test."
+						"cancelDetail": reason
 						})
 						.then((result) => {
 							return result.data;

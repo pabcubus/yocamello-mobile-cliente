@@ -147,8 +147,30 @@
 					return deferred.promise;
 				}
 
-				function getUser(){
-					return vm.user;
+				function getUser(notCached){
+					if (!notCached)
+						return vm.user;
+
+					let deferred	= $q.defer();
+
+					DataService.performOperation(true, '/rest/users/'+vm.user.id)
+						.then(function(result){
+							vm.user			= result.data;
+							vm.user.loged	= true;
+
+							HelperService.storage.set(HelperService.constants.LOCALSTORAGE_USER_TAG, vm.user, true);
+
+							deferred.resolve(vm.user);
+						})
+						.catch(function(err){
+							vm.logout();
+							deferred.reject({
+								code: '01',
+								message: err.data.message || 'Usuario no encontrado'
+							});
+						});
+
+					return deferred.promise;
 				}
 
 				function _checkUser(){

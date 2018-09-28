@@ -7,19 +7,19 @@
 			<div class="estado-card-text">
 				{{estado.description}}
 			</div>
-			<div class="estado-card-finish" ng-show="estado.status == 'OP'" layout="row">
-				<md-button
-					flex
-					ng-click="ec.terminarTrabajo()"
-					class="md-raised md-warn">
-					Terminar Trabajo
-				</md-button>
-			</div>
 		</div>
 	</div>
+
 	<md-button
-		ng-show="ec.solicitud.estados.length > 0"
 		flex="nogrow"
+		ng-show="ec.solicitud.isTerminable"
+		ng-click="ec.terminarTrabajo()"
+		class="md-raised md-warn">
+		Terminar Trabajo
+	</md-button>
+	<md-button
+	flex="nogrow"
+		ng-show="ec.solicitud.estados.length > 0 && ec.solicitud.isCancelable"
 		ng-click="ec.cancelarTrabajo()"
 		class="md-raised md-warn">
 		Cancelar Trabajo

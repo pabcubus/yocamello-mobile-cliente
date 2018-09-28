@@ -12,18 +12,36 @@
 
 				vm.coordinates			= null;
 				vm.gotCoordinates		= true;
-				vm.openMenu				= openMenu;
-				vm.selectOption			= selectOption;
-				vm.acceptSolicitud		= acceptSolicitud
-				vm.acceptarTest			= acceptarTest;
 
 				vm.currentTrabajador	= {};
+				vm.hasServiciosPendientes	= false;
 				vm.currentSolicitud		= null;
 
+				vm.openMenu				= openMenu;
+				vm.selectOption			= selectOption;
+				vm.acceptSolicitud		= acceptSolicitud;
+				vm.acceptarTest			= acceptarTest;
+				vm.getCoordinates		= getCoordinates;
+
 				$scope.$on('$viewContentLoaded', function(event){
-					GoogleMapsService.getCoordinates()
-						.then((coords) => {
+					vm.getCoordinates();
+				});
+
+				function getCoordinates() {
+					UIService.showLoadingScreen('Buscando servicios...');
+
+					vm.hasServiciosPendientes	= false;
+
+					let promises = [
+						SessionService.getUser(true),
+						GoogleMapsService.getCoordinates()
+					];
+
+					Promise.all(promises)
+						.then((data) => {
+							let coords = data[1];
 							vm.gotCoordinates = true;
+							vm.coordinates = coords;
 							_onInit(coords.lat, coords.lng);
 						})
 						.catch((err) => {
@@ -34,15 +52,19 @@
 								})
 								.catch();
 							alert.log(err.message);
+						})
+						.finally(() => {
+							UIService.hideLoadingScreen();
 						});
-				});
+				}
 
 				function _onInit(lat, lng) {
 					let user = SessionService.getUser();
 
 					SolicitudService.getServicesAvailable(user, ['RQ','PA','AS','OP','EN'])
 						.then(servicios => {
-							vm.currentSolicitud	= servicios.length > 0 ? servicios[0] : null;
+							vm.currentSolicitud			= servicios.length > 0 ? servicios[0] : null;
+							vm.hasServiciosPendientes	= servicios.length > 0 ? true : false;
 						})
 						.catch();
 
@@ -65,12 +87,12 @@
 					let user = SessionService.getUser();
 
 					if (!vm.coordinates) {
-						alert(err.message || 'Hubo un error. Intenta mas tarde.');
+						alert('Hubo un error. Intenta mas tarde.');
 						UIService.hideLoadingScreen();
 						return;
 					}
 
-					SolicitudService.requestSolicitud(user, servicio, 10.936224, -74.794044).then((serviceResponse) => {
+					SolicitudService.requestSolicitud(user, servicio, vm.coordinates.lat, vm.coordinates.lng).then((serviceResponse) => {
 						vm.currentSolicitud = serviceResponse;
 
 						switch (vm.currentSolicitud.serviceStatus) {
