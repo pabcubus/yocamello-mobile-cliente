@@ -6,22 +6,22 @@
 			var ngDependencies = ['$state', 'lodash', '$scope', '$timeout', 'MenuService', 'UIService', 'SolicitudService', 'SessionService', 'GoogleMapsService'];
 
 			var HomeController = function($state, lodash, $scope, $timeout, MenuService, UIService, SolicitudService, SessionService, GoogleMapsService) {
-				var vm					= this;
+				var vm						= this;
 
-				vm.menuOptions			= [];
+				vm.menuOptions				= [];
 
-				vm.coordinates			= null;
-				vm.gotCoordinates		= true;
+				vm.coordinates				= null;
+				vm.gotCoordinates			= true;
 
-				vm.currentTrabajador	= {};
+				vm.currentTrabajador		= {};
 				vm.hasServiciosPendientes	= false;
-				vm.currentSolicitud		= null;
+				vm.currentSolicitud			= null;
 
-				vm.openMenu				= openMenu;
-				vm.selectOption			= selectOption;
-				vm.acceptSolicitud		= acceptSolicitud;
-				vm.acceptarTest			= acceptarTest;
-				vm.getCoordinates		= getCoordinates;
+				vm.openMenu					= openMenu;
+				vm.selectOption				= selectOption;
+				vm.acceptSolicitud			= acceptSolicitud;
+				vm.acceptarTest				= acceptarTest;
+				vm.getCoordinates			= getCoordinates;
 
 				$scope.$on('$viewContentLoaded', function(event){
 					vm.getCoordinates();

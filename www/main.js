@@ -15,7 +15,7 @@
 			'angular-aria':				'bower_components/angular-aria/angular-aria.min',
 			'angular-messages':			'bower_components/angular-messages/angular-messages.min',
 			'angular-material':			'bower_components/angular-material/angular-material.min',
-			'jkAngularRatingStars':		'bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min',
+			'jkAngularRatingStars':		'node_modules/angular-jk-rating-stars/dist/jk-rating-stars.min',
 			'zSchema':					'bower_components/z-schema/dist/ZSchema-browser-min',
 			'jsSHA':					'bower_components/jsSHA/src/sha',
 			'uiCropper':				'bower_components/ui-cropper/compile/minified/ui-cropper',

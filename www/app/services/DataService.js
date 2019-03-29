@@ -13,7 +13,7 @@
 				function performOperation(useToken, url, operation, data) {
 					let deferred	= $q.defer();
 
-					let apiurl		= 'http://ec2-13-58-221-170.us-east-2.compute.amazonaws.com:8080/YoCamelloRS/api';
+					let apiurl		= 'http://ec2-18-220-27-24.us-east-2.compute.amazonaws.com:8080/YoCamelloRS/api';
 
 					let token		= useToken ? HelperService.storage.get(HelperService.constants.LOCALSTORAGE_TOKEN_TAG) : null;
 
